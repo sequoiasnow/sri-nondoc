@@ -1,0 +1,92 @@
+$input-padding: 10px;
+$input-font-size: 16px;
+
+form, form * {
+    @include transition( all 0.25s ease-out );
+}
+
+/* Style the container. */
+form .form-field {
+    margin: 10px auto;
+}
+
+/* Style the input */
+form .form-field input {
+    @include border-radius( 5px );
+    border: 1px solid #ccc;
+    width: 100%;
+    padding: $input-font-size;
+    color: #42474F;
+    font-size: 16px;
+
+    &.valid {
+        @include box-shadow( inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(#2ECC71, 0.6) );
+        outline: none;
+        border: 1px solid #2ECC71;
+    }
+
+    &.invalid {
+        @include box-shadow( inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(#e74c3c, 0.6) );
+        outline: none;
+        border: 1px solid #e74c3c;
+    }
+
+    &.empty {
+        @include box-shadow( inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(#f1c40f, 0.6) );
+        outline: none;
+        border: 1px solid #f1c40f;
+    }
+
+    &:focus {
+        @include box-shadow( inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6) );
+        outline: none;
+        border: 1px solid #66afe9;
+    }
+}
+
+/* Style for the font awesome icon... */
+form .form-field {
+    position: relative;
+}
+
+form .form-field .fa {
+    color: #ccc;
+    font-size: $input-font-size;
+
+    position: absolute;
+    left: $input-padding;
+    top: $input-padding + $input-font-size / 2;
+
+    & ~ input {
+        padding-left: $input-font-size * 2;
+    }
+}
+
+
+@mixin fa-icon-input( $icon ) {
+    &::after {
+        content: $icon;
+        font-family: 'FontAwesome';
+        color: #ccc;
+        font-size: $input-font-size * 0.8;
+
+        position: absolute;
+        left: $input-padding;
+        top: $input-padding + $input-font-size * (1 + .6) / 2;
+    }
+
+    input { padding-left: $input-font-size * 2; }
+}
+
+/* Allow for an array of icons to be shown for their respective fields. */
+$input-type-icons: (
+    'email': '\f003',
+    'phone': '\f095',
+    'password': '\f13e'
+);
+
+@each $name, $icon in $input-type-icons {
+    form .form-field.type-#{$name} {
+        @include fa-icon-input( $icon );
+    }
+}

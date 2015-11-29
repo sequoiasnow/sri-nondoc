@@ -1,0 +1,44 @@
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    email VARCHAR(255) NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    pass VARCHAR(65) NOT NULL,
+    PRIMARY KEY(id)
+);
+
+DROP TABLE IF EXISTS appointment_groups;
+CREATE TABLE appointment_groups (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    user_id INT(11) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    PRIMARY KEY(id)
+);
+
+DROP TABLE IF EXISTS appointments;
+CREATE TABLE appointments (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    app_group_id INT(11) NOT NULL,
+    maxclients INT(11) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    PRIMARY KEY(id)
+);
+
+DROP TABLE IF EXISTS client_appointments;
+CREATE TABLE client_appointments (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    client_id INT(11) NOT NULL,
+    appointment_id INT(11) NOT NULL,
+    PRIMARY KEY(id)
+);
+
+DROP TABLE IF EXISTS clients;
+CREATE TABLE clients (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    app_group_id INT(11) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    hash VARCHAR(33) NOT NULL,
+    PRIMARY KEY(id)
+);

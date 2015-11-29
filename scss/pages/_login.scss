@@ -1,0 +1,173 @@
+body.login {
+    background-color: $color__dark;
+
+}
+
+* {
+    @include box-sizing( border-box );
+    @include transition( all 0.2s ease-in );
+}
+
+
+/* Vertically center the login */
+.center-login {
+    @include display-flex;
+    @include flex-direction( column );
+    @include justify-content( center );
+
+    width: 100vw;
+    min-height: 100vh;
+}
+
+#login-container {
+    background-color: $color__light;
+    width: $size__width-login;
+    padding: 10px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body.client-login #login-container .form-field {
+    @include fa-icon-input( '\f084' );
+}
+
+/* Show the title as centered and important */
+#login-container header .title {
+    text-align: center;
+    width: 100%;
+}
+
+/* Set up the aditional login navigation potion */
+#login-container {
+    position: relative;
+    overflow: visible;
+}
+
+/* Remove all default styling form anchor tags */
+.side-navigation  a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.side-navigation {
+    position: absolute;
+    left: 100%;
+    top: 0;
+
+    border-left: 1px solid black;
+}
+
+.side-navigation .navigation-item {
+    display: inline-block;;
+
+    background-color: $color__light;
+    border-bottom: 1px solid black;
+    position: relative;
+
+    &:last-child { border-bottom: none; }
+}
+
+/* Show the titles */
+.side-navigation .navigation-item .title {
+    @include nowrap;
+    display: inline-block;
+    padding: 15px #{ 15px + $input-font-size / 2};
+}
+
+/* Change what portions of the login navigation are visible. */
+.side-navigation .navigation-item .description {
+    display: none;
+}
+
+/* Allow for some highlight color */
+.side-navigation .navigation-item::after {
+    @include transition( all 0.4s ease-out );
+
+    content: '';
+    height: 100%;
+    width: 0;
+
+    position: absolute;
+    left: 100%;
+    bottom: 0;
+    top: 0;
+
+    background-color: #1abc9c;
+}
+
+.side-navigation .navigation-item:hover::after {
+    width: 25px;
+}
+
+#login-signup-navigation {
+    top: auto;
+    bottom: 0;
+
+    .title { cursor: pointer; }
+}
+
+/* Adjust for mobile */
+@media screen and (max-width: #{ $size__width-login + 150px }) {
+    #login-container {
+        min-height: 100vh;
+    }
+
+    .side-navigation {
+        position: relative;
+        left: auto;
+        right: auto;
+
+        width: 100%;
+        margin: 0;
+        margin-top: 30px;
+
+        &, * {
+            border: none;
+            border-bottom: none;
+        }
+    }
+    .side-navigation .navigation-item {
+        display: block;
+        width: 100%;
+        text-align: center;
+
+        &::after { display: none; }
+    }
+}
+
+
+/* Specific to user login */
+body.user-login {
+
+#login-toggle {
+    width: 100%;
+    @include display-flex;
+    @include flex-direction(row);
+}
+
+#login-toggle .option {;
+    width: 50%;
+    padding: 20px;
+    text-align: center;
+
+    &.selected {
+        border-bottom: 1px solid black;
+    }
+}
+
+.login-button {
+    @include border-radius( 3px );
+
+    text-align: center;
+    margin: 10px auto;
+    background-color: #95a5a6;
+    color: white;
+    padding: 4px;
+
+    cursor: pointer;
+
+    width: 100px;
+}
+
+}

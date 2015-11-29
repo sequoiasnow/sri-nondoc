@@ -1,0 +1,186 @@
+/* Set some defaults for the file */
+$size__logo: 300px !default;
+$size__logo-electron: 25px !default;
+$size__logo-center: 40px !default;
+$size__logo-orbit: 10px;
+
+$color__logo: #222 !default;
+
+/* Style to be centered in container. */
+.logo {
+    margin: 60px auto;
+
+    width: $size__logo;
+    height: $size__logo;
+
+    &, * {
+        @include box-sizing( border-box );
+    }
+}
+
+/* Position the rings */
+.logo {
+    position: relative;
+}
+
+.logo .ring {
+    @include border-radius( 50% );
+    border: $size__logo-orbit solid $color__logo;
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    height: 100%;
+    width: 100%;
+
+    @for $i from 1 through 3 {
+        &:nth-child(#{ $i }) {
+            @include transform( rotate( $i * 120deg ) scale( 0.333333, 1 ) );
+        }
+    }
+}
+
+/* Animate the electrons. */
+@include keyframes( electron-orbit ) {
+    to   { @include transform( rotate(360deg) ); }
+}
+
+/* Show the electrons */
+.logo .ring .electron {
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    width: 100%;
+    height: 0;
+
+    @include animation( electron-orbit 4s infinite linear );
+
+    &::after {
+        content: '';
+        background-color: $color__logo;
+
+        width: $size__logo-electron;
+        height: $size__logo-electron;
+
+        @include border-radius( 50% );
+
+        position: absolute;
+        right: ( $size__logo-orbit + $size__logo-electron ) / -2;
+        top: -$size__logo-electron / 2;
+    }
+}
+
+/* Show the center of the atom... */
+.logo .center {
+    position: absolute;
+
+    top: 50%; // For older broswer support.
+    top: calc( 50% - #{ $size__logo-center / 2 } );
+    left: 50%; // For older browser support.
+    left: calc( 50% - #{ $size__logo-center / 2 } );
+
+    width: $size__logo-center;
+    height: $size__logo-center;
+
+    @include border-radius( 50% );
+    background-color: $color__logo;
+
+    @include box-shadow( 0 0 10px rgba( $color__logo, 0.3 ),
+                   inset 0 0 20px rgba( $color__logo, 0.3 ) );
+}
+
+/* Animate the logo. */
+@include keyframes( logo-center-glow ) {
+    0% {
+        @include box-shadow( 0 0 10px rgba( $color__logo, 0.3 ),
+                       inset 0 0 20px rgba( $color__logo, 0.3 ) );
+        @include transform( scale( 1 ) );
+    }
+    50% {
+        @include box-shadow( 0 0 8px rgba( $color__logo, 0.45 ),
+                       inset 0 0 16px rgba( $color__logo, 0.45 ) );
+
+        @include transform( scale( 1.05 ) );
+    }
+    100% {
+        @include box-shadow( 0 0 10px rgba( $color__logo, 0.3 ),
+                       inset 0 0 20px rgba( $color__logo, 0.3 ) );
+        @include transform( scale( 1 ) );
+    }
+}
+
+.logo .center {
+    @include animation( logo-center-glow 1s infinite linear );
+}
+
+/* Provide an interface for changing the background color of a logo. */
+@mixin logo-change-color( $color: $color__logo ) {
+    $id: unique-id();
+
+    &.logo, .logo {
+
+        .ring { border-color: $color; }
+
+        .ring .electron::after { background-color: $color; }
+
+        .center {
+            background-color: $color;
+
+            @include box-shadow( 0 0 10px rgba( $color, 0.3 ),
+                           inset 0 0 20px rgba( $color, 0.3 ) );
+
+            @include animation( logo-center-glow-#{$id} 1s infinite linear );
+        }
+
+        @include keyframes( logo-center-glow-#{$id} ) {
+            0% {
+                @include box-shadow( 0 0 10px rgba( $color, 0.3 ),
+                               inset 0 0 20px rgba( $color, 0.3 ) );
+                @include transform( scale( 1 ) );
+            }
+            50% {
+                @include box-shadow( 0 0 8px rgba( $color, 0.45 ),
+                               inset 0 0 16px rgba( $color, 0.45 ) );
+
+                @include transform( scale( 1.05 ) );
+            }
+            100% {
+                @include box-shadow( 0 0 10px rgba( $color, 0.3 ),
+                               inset 0 0 20px rgba( $color, 0.3 ) );
+                @include transform( scale( 1 ) );
+            }
+        }
+    }
+}
+
+/* Provide an interface for the chnaging of the logo size. */
+@mixin logo-change-size( $logo: $size__logo, $electron: $size__logo-electron, $orbit: $size__logo-orbit, $center: $size__logo-center ) {
+    &.logo, .logo {
+        width: $size;
+        height: $size;
+
+        .ring { border-size: $orbit; }
+
+        .ring .electron::after {
+            width: $electron;
+            height: $electron;
+
+            right: ( $orbit + selectron ) / -2;
+            top: -$electron / 2;
+        }
+
+        .center {
+            top: calc( 50% - #{ $size__logo-center / 2 } );
+            left: calc( 50% - #{ $size__logo-center / 2 } );
+
+            width: $size__logo-center;
+            height: $size__logo-center;
+        }
+    }
+}
