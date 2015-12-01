@@ -14,20 +14,14 @@ define( 'DB_HOST', 'localhost' );
 /**
  * The name of your mysql database user.
  */
-define( 'DB_USER', 'atomic-user' );
+define( 'DB_USER', 'sri-nodoc-user' );
 
 /**
  * The password of your mysql user.
  */
-define( 'DB_PASS', '1618atomicApp' );
+define( 'DB_PASS', '314srinodoc' );
 
 /**
  * The name of your mysql database.
  */
-define( 'DB_NAME', 'atomic_appointment' );
-
-/**
- * The name of your mysql table prefix, used to allow multiple sites in a
- * single database.
- */
-define( 'DB_TABLE_PREFIX', 'ATOMIC_' );
+define( 'DB_NAME', 'sri_nodoc' );

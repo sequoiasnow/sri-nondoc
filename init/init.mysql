@@ -1,44 +1,19 @@
-DROP TABLE IF EXISTS users;
-CREATE TABLE users (
+DROP TABLE IF EXISTS content_types;
+CREATE TABLE content_types (
     id INT(11) NOT NULL AUTO_INCREMENT,
-    email VARCHAR(255) NOT NULL,
-    name VARCHAR(50) NOT NULL,
-    pass VARCHAR(65) NOT NULL,
+    class_name VARCHAR(100) NOT NULL,
+    table_name VARCHAR(100) NOT NULL,
+    public_name VARCHAR(100),
+    public_description TEXT,
     PRIMARY KEY(id)
 );
 
-DROP TABLE IF EXISTS appointment_groups;
-CREATE TABLE appointment_groups (
+DROP TABLE IF EXISTS content_type_fields;
+CREATE TABLE content_type_fields (
     id INT(11) NOT NULL AUTO_INCREMENT,
-    user_id INT(11) NOT NULL,
-    title VARCHAR(255) NOT NULL,
-    description TEXT,
-    PRIMARY KEY(id)
-);
-
-DROP TABLE IF EXISTS appointments;
-CREATE TABLE appointments (
-    id INT(11) NOT NULL AUTO_INCREMENT,
-    app_group_id INT(11) NOT NULL,
-    maxclients INT(11) NOT NULL,
-    title VARCHAR(255) NOT NULL,
-    description TEXT,
-    PRIMARY KEY(id)
-);
-
-DROP TABLE IF EXISTS client_appointments;
-CREATE TABLE client_appointments (
-    id INT(11) NOT NULL AUTO_INCREMENT,
-    client_id INT(11) NOT NULL,
-    appointment_id INT(11) NOT NULL,
-    PRIMARY KEY(id)
-);
-
-DROP TABLE IF EXISTS clients;
-CREATE TABLE clients (
-    id INT(11) NOT NULL AUTO_INCREMENT,
-    app_group_id INT(11) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    hash VARCHAR(33) NOT NULL,
-    PRIMARY KEY(id)
+    type_id INT(11) NOT NULL,
+    field_name VARCHAR( 100 ) NOT NULL,
+    public_field_name VARCHAR( 100 ),
+    public_description VARCHAR(1000),
+    PRIMARY KEY( id )
 );
