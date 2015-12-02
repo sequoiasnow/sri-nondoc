@@ -6,7 +6,11 @@
  * A field should contian a description as well as a human readable name, to
  * allow display in the data_types.
  */
-class Field {
+class Field implements ArrayAccess {
+    /// Checks the attribute values to pull into attributes array, can be level
+    /// one object.
+    protected static $attrValues = array();
+
     /// The origional value of the field, unaltered.
     protected $rawValue;
 
@@ -16,11 +20,26 @@ class Field {
     /**
      * Transforms a key value array into an html string of attributes.
      *
+     * If there are no $values the defaults will be assumed.
+     *
      * @param array
      *
      * @return string
      */
-    protected function getAttrStr( array $values ) {
+    protected function getAttrStr( array $values = null ) {
+        // Creates a values array as a default.
+        if ( ! $values ) {
+            $values = isset( $this->args['attributes'] ) ? $this->args['attributes'] : array();
+
+            // Use attribute values that could be stored as level one array.
+            foreach ( self::$attrValues as $key ) {
+                if ( ! isset( $values[$key] ) && isset( $this->args[$key] ) ) {
+                    $values[$key] = $this->args[$key];
+                }
+            }
+        }
+
+        // Forms default string.
         $str = '';
         foreach ( $values as $key => $val ) {
             $str .= $key . '="' . $val . '" ';
@@ -68,4 +87,62 @@ class Field {
     public function getTitle() {
         return $this->getPublic( 'title' );
     }
+
+    /**
+     * Implements array access...
+     */
+
+
+    /**
+     * Returns the existance of a value at a given offset from the args array.
+     *
+     * @param string $offset
+     *
+     * @return bool
+     */
+    public function offsetExists( $offset ) {
+        return isset( $this->args[$offset] );
+    }
+
+    /**
+     * Unsets a value at a given value in the args array.
+     *
+     * @param string $offset
+     *
+     * @return mixed
+     */
+    public function offsetUnset( $offset ) {
+        unset( $this->args[$offset] );
+    }
+
+    /**
+     * Returns a value at a given offset from the args array.
+     *
+     * @param string $offset
+     *
+     * @return mixed
+     */
+    public function offsetGet( $offset ) {
+        if ( isset( $this->args[$offset] ) ) {
+            return $this->args[$offset];
+        }
+        return null;
+    }
+
+    /**
+     * Sets a new valur for the args array
+     *
+     * @param string $offset
+     * @param mixed $value
+     */
+    public function offsetSet( $offset, $value ) {
+        $this->args[$offset] = $value;
+    }
 }
+
+
+// Include all the fields...
+include_once 'image_field.php';
+include_once 'password_field.php';
+include_once 'text_field.php';
+include_once 'textarea_field.php';
