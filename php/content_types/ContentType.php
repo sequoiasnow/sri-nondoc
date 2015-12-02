@@ -23,10 +23,4 @@ abstract class ContentType implements FormPrintable {
 
         return $return;
     }
-
-    /**
-     *
-     *
-     *
-     */
 }
