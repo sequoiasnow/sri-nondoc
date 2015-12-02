@@ -30,7 +30,7 @@ class NavigationLink extends ContentType {
                                       the domain. For example, if the page going
                                       to is test, simply write test. If the
                                       site is on another domain, include
-                                      http://',
+                                      \'http://\'.',
                 ),
             ) ),
         );
@@ -79,5 +79,37 @@ class NavigationLink extends ContentType {
         return array(
             'redirect_to' => 'www.apple.com',
         );
+    }
+
+
+    /// Variables in a coordance to the database values.
+    public $id;
+    public $title;
+    public $href;
+
+    /**
+     * Construct the class with new data from the database.
+     * ( Note this can also be provided by the )
+     *
+     */
+    public function __construct( array $data ) {
+        // Assign individaul results based off of values in array.
+        foreach ( $data as $k => $v ) {
+            $this->$k = $v;
+        }
+    }
+
+    /**
+     * Print a navigation link in a cohesive fashion.
+     *
+     * @return string
+     */
+    public function __toString() {
+        // Transform the title to be html outputable.
+        $title = htmlspecialchars($this->title );
+
+        return "<div class=\"navigation-link\"
+            <a href=\"{$this->href}\">{$title}</a>
+        </div>";
     }
 }

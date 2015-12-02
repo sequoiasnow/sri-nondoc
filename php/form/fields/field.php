@@ -92,7 +92,6 @@ class Field implements ArrayAccess {
      * Implements array access...
      */
 
-
     /**
      * Returns the existance of a value at a given offset from the args array.
      *
