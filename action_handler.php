@@ -11,5 +11,8 @@ if ( isset( $_GET['action'] ) ) {
 
         // Call the actual action.
         Action::callActionFunc( $func );
+
+        // Destroy that forms unique identifier.
+        unset( $_SESSION["action_{$action}"] );
     }
 }

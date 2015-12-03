@@ -9,6 +9,7 @@
  * Note!!! this feature is not yet fully supported.
  */
 define( 'ACTION_HANDLER_FILE', WEB_ROOT . '/action_handler.php' );
+
 class Action {
     /// The determining file for redirecting from the prefered action.
     const HandlerFile = ACTION_HANDLER_FILE;
