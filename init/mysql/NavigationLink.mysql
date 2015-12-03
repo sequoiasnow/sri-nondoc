@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS navigation_link;
-CREATE TABLE navigation_link (
+DROP TABLE IF EXISTS navigation_links;
+CREATE TABLE navigation_links (
     id INT(11) NOT NULL AUTO_INCREMENT,
     title VARCHAR(250) NOT NULL,
     href VARCHAR(400) NOT NULL,

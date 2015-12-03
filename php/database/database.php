@@ -198,9 +198,3 @@ class Database {
        return $object;
     }
 }
-
-/**
- * Include relevant extensions of the Database class.
- */
-require_once 'userdatabase.php';
-require_once 'clientdatabase.php';

@@ -6,6 +6,9 @@ define( 'ROOT_DIR', __DIR__ );
 // Define the web root for the system.
 define( 'WEB_ROOT', 'http://localhost/~sequoiasnow/work/sri-nodoc' );
 
+// Define where a user can log in to the page.
+define( 'USER_LOGIN', WEB_ROOT . '/manage/login' );
+
 // Load the config file for the site.
 require_once ROOT_DIR . '/config.php';
 

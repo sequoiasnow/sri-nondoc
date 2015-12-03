@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Defines how actions are handled, typically these are the result of forms
  * and are recieved by the actions/.... file.
@@ -9,9 +8,10 @@
  *
  * Note!!! this feature is not yet fully supported.
  */
+define( 'ACTION_HANDLER_FILE', WEB_ROOT . '/action_handler.php' );
 class Action {
     /// The determining file for redirecting from the prefered action.
-    const HandlerFile = WEB_ROOT . '/action_handler.php';
+    const HandlerFile = ACTION_HANDLER_FILE;
 
     /**
      * Calls a function from a loaded class, and thus assumes includes all the

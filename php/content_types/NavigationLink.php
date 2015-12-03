@@ -6,6 +6,9 @@
  * @see init/mysql/NavigationLink.mysql
  */
 class NavigationLink extends ContentType {
+    /// The table name specified for this content type
+    const TableName = 'navigation_links';
+
     /**
      * Return all the fields relevant to the form.
      *
@@ -91,6 +94,7 @@ class NavigationLink extends ContentType {
      * Construct the class with new data from the database.
      * ( Note this can also be provided by the )
      *
+     * @param array $data
      */
     public function __construct( array $data ) {
         // Assign individaul results based off of values in array.
@@ -106,7 +110,7 @@ class NavigationLink extends ContentType {
      */
     public function __toString() {
         // Transform the title to be html outputable.
-        $title = htmlspecialchars($this->title );
+        $title = htmlentities($this->title );
 
         return "<div class=\"navigation-link\"
             <a href=\"{$this->href}\">{$title}</a>
