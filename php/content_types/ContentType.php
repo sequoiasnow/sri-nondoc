@@ -24,3 +24,7 @@ abstract class ContentType implements FormPrintable {
         return $return;
     }
 }
+
+
+include 'NavigationLink.php';
+include 'User.php';

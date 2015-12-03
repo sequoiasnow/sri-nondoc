@@ -46,7 +46,7 @@ class NavigationLink extends ContentType {
      */
     public static function getDescription() {
         return 'The navigation link will be displayed as a component of the
-                sites navigation and allowes the linking of multiple pages.'
+                sites navigation and allowes the linking of multiple pages.';
     }
 
     /**

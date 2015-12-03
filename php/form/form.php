@@ -55,7 +55,7 @@ class Form {
     protected function attributeStr() {
         $attrs = array(
             'id'     => $this->name,
-            'action' => $this->action,
+            'action' => '' . $this->action,
             'method' => 'POST',
         );
 

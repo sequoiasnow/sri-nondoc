@@ -43,13 +43,30 @@ class Database {
     /**
      * Escapes a string of special mysqli parameters.
      *
-     * @param string $string
+     * @param string... $string
      *
-     * @return stirng
+     * @return stirng/array
      */
-    public static function escapeString( $string ) {
+    public static function escapeString() {
+        // Get the connection to escape the string.
         $connection = self::getConnection();
-        return $connection->real_escape_string( $string );
+
+        // Gather the arguments for the current function as an array.
+        $args = func_get_args();
+
+        // Check if the function is simply single use
+        if ( count( $args ) === 1 ) {
+            return $connection->real_escape_string( $args[0] );
+        }
+
+        // Construct an array of the arguments escaped values.
+        $resultArray = array();
+
+        foreach ( $args as $arg ) {
+            $resultArray[] = $connection->real_escape_string( $arg );
+        }
+
+        return $resultArray;
     }
 
     /**
