@@ -23,6 +23,32 @@ abstract class ContentType implements FormPrintable {
 
         return $return;
     }
+
+    /// Stores all data, key value pairing exact as in a database.
+    private $data;
+
+    /**
+     * Default constructor that allowes the use of variables to be
+     * incuded in the element.
+     *
+     * @param array $data
+     */
+    public function __construct( $data ) {
+        foreach ( $data as $key => $val ) {
+            $data->$key = $val;
+        }
+
+        $this->data = $data;
+    }
+
+    /**
+     * Allowes the accessing all of the arguments.
+     *
+     * @return array
+     */
+    public function getData() {
+        return $this->data;
+    }
 }
 
 

@@ -14,10 +14,11 @@ $loginForm = new Form( array(
             ),
         ) ),
         new PasswordField( array(
-            'name'        => 'password',
-            'placeholder' => 'secretpass',
-            'public'      => array(
-                'title'       => 'Password',
+            'name'             => 'password',
+            'placeholder'      => 'secretpass',
+            'submit-on-return' => true,
+            'public'           => array(
+                'title' => 'Password',
             ),
         ) ),
     )

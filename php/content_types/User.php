@@ -126,13 +126,23 @@ class User extends ContentType {
         }
 
         if ( ! count( $returnArray ) ) {
+            // Create a new user to save.
+            // Data for the user.
+            $userData = array(
+                'email'    => $data['user_email'],
+                'name'     => $data['user_name'],
+                'password' => $data['user_password_1'],
+            );
+
+            // Check if there is an id to perform the save operation.
+            if ( isset( $data['id'] ) ) {
+                $userData['id'] = $data['id'];
+            }
+
+            $user = new self( $userData );
+
             // Insert into the database.
-
-
-
-
-
-            $returnArray['successs'] = true;
+            $returnArray['successs'] = Database::save( __CLASS__, $user );
         }
 
         return $returnArray;
@@ -188,6 +198,8 @@ class User extends ContentType {
                 'invalids' => array_keys( $data )
             );
         }
+
+        return 'Hello World';
     }
 
     /// Variables as noted in mysql table.
@@ -204,9 +216,7 @@ class User extends ContentType {
      */
     public function __construct( $args, $validate = false ) {
         // Perform the initialization of the arguments.
-        foreach ( $args as $k => $v ) {
-            $this->$k = $v;
-        }
+        parent::__construct();
 
         // Check if should validate the users existance.
         if ( $validate ) {

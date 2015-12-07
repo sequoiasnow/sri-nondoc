@@ -45,4 +45,4 @@ gulp.task( 'watch', function() {
     gulp.watch( 'js/**/*.js', [ 'js' ] );
 });
 
-gulp.task( 'default', [ 'watch', 'serve' ] );
+gulp.task( 'default', [ 'compass' ] );

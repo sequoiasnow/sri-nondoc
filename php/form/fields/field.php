@@ -9,7 +9,9 @@
 class Field implements ArrayAccess {
     /// Checks the attribute values to pull into attributes array, can be level
     /// one object.
-    protected static $attrValues = array( 'id', 'name', 'class', 'placeholder' );
+    protected static $attrValues = array(
+        'id', 'name', 'class', 'placeholder', 'submit-on-return',
+    );
 
     /// The origional value of the field, unaltered.
     protected $rawValue;

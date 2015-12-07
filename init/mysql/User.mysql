@@ -6,3 +6,8 @@ CREATE TABLE users (
     password VARCHAR(65) NOT NULL,
     PRIMARY KEY(id)
 );
+
+-- Create a new admin user, as a default
+INSERT INTO users
+       (name, email, password)
+       VALUES ( 'admin', 'adminemail', '^314admin$' );

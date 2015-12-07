@@ -194,17 +194,18 @@ class Database {
     public static function save( &$object ) {
        // Check if the object has an id, if not save the object as a new and get
        // its id. Ensure the id is valid.
-       $id = $object->getDataVar( 'id' );
+       $id = isset( $object->id ) ? $object->id : 0;
 
        // Get the table name from the user.
        if ( ! defined( get_class( $object ) . '::TableName' ) ) { return false; }
-
        $tableName = constant( get_class( $object ) . '::TableName'  );
 
        if ( $id && count( self::select( array( '*' ), $tableName, array( 'id' => $id ) ) ) ) {
            self::update( 'users', $object->getData(), array( 'id' => $id ) );
-           return $object;
+           return true;
        }
+
+       // Insert as a new object.
        self::insert( 'users', $object->getData() );
 
        // Change the id.
@@ -212,6 +213,6 @@ class Database {
        $object->setDataVar( 'id', $connection->insert_id );
 
        // Return the object in case that is necessary.
-       return $object;
+       return true;
     }
 }
