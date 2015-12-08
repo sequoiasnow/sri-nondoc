@@ -7,7 +7,7 @@ $loginForm = new Form( array(
     'action' => new Action( array( 'User', 'handleUserLogin' ) ),
     'fields' => array(
         new TextField( array(
-            'name'        => 'user_name',
+            'name'        => 'user_email',
             'placeholder' => 'example@email.com',
             'public'      => array(
                 'title'       => 'Username',

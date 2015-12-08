@@ -10,20 +10,16 @@
         var action = this.attr( 'action' );
 
         var handleResponse = function( response ) {
+            console.log( 'response: ', response );
+
             if ( response.invalids ) {
                 for ( var key of response.invalids ) {
                     this.find( 'input[name="' + key + '"]' ).addClass( 'invalid' ).removeClass( 'valid empty' );
                 }
             } else if ( response.redirect ) {
-                if ( response.valids ) {
-                    for ( var key of response.valids ) {
-                        this.find( 'input[name="' + key + '"]' ).addClass( 'valid' ).removeClass( 'invalid empty' );
-                    }
-                }
-
                 console.log( 'redirecting' );
 
-                window.location.replace( response.redirect_to );
+                window.location.replace( response.redirect );
             } else if ( response.emptys ) {
 
                 for ( var key of response.emptys ) {
@@ -53,6 +49,8 @@
 
                 return data;
             })( this );
+
+            console.log( 'Submission sent... awaiting response' );
 
             $.ajax({
                 type: 'POST',
@@ -92,7 +90,7 @@
             return false;
         });
 
-        // Disallow submits.
+        // Disallow submits by typically means.
         this.submit(function( e ) {
             e.preventDefault();
         });

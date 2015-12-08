@@ -7,9 +7,6 @@
  * Includes links to all aspects of the interface.
  */
 
-// Include manage.js
-loadJSFile( 'manage' );
-
 // Allow for the proper css styles to apply.
 $bodyClasses = array( 'manage' );
 
@@ -21,7 +18,11 @@ foreach ( get_declared_classes() as $class ) {
     }
 }
 
-include __DIR__ . '/../.components/header.php'; ?>
+include __DIR__ . '/../components/header.php';
+
+// Include manage.js
+loadJSFile( 'manage' );
+?>
 
     <div id="page">
 
@@ -42,7 +43,7 @@ include __DIR__ . '/../.components/header.php'; ?>
             <?php /* Load the content types from the array of their values */ ?>
             <?php foreach ( $contentTypes as $type ) : ?>
 
-                <div class="content-type">
+                <div class="content-type" data-classname="<?php print $type::getName(); ?>">
                     <span><?php print $type::getName(); ?></span>
                 </div>
 
@@ -51,4 +52,4 @@ include __DIR__ . '/../.components/header.php'; ?>
 
     </div> <!-- #page -->
 
-<?php include __DIR__ . '/../.components/footer.php'; ?>
+<?php include __DIR__ . '/../components/footer.php'; ?>

@@ -158,8 +158,8 @@ class User extends ContentType {
     public static function handleUserLogin( array $data ) {
         $emptys = array();
 
-        if ( ! isset( $data['user_name'] ) ) {
-            $emptys[] = 'user_name';
+        if ( ! isset( $data['user_email'] ) ) {
+            $emptys[] = 'user_email';
         }
         if ( ! isset( $data['password'] ) ) {
             $emptys[] = 'password';
@@ -173,12 +173,12 @@ class User extends ContentType {
         }
 
         $password = hash( 'sha256', $data['password'] );
-        $username = Database::escapeString( $data['user_name'] );
+        $username = Database::escapeString( $data['user_email'] );
 
         // Check if the user exits...
         $result = Database::query( "SELECT *
                                     FROM users
-                                    WHERE name='$username'
+                                    WHERE email='$username'
                                       AND password='$password'" );
 
         if ( $result->num_rows ) {
@@ -192,14 +192,12 @@ class User extends ContentType {
             return array(
                 'redirect' => 'manage'
             );
-        } else {
-            // There is no such entry.
-            return array(
-                'invalids' => array_keys( $data )
-            );
         }
 
-        return 'Hello World';
+        // There is no such entry.
+        return array(
+            'invalids' => array_keys( $data )
+        );
     }
 
     /**
@@ -209,16 +207,23 @@ class User extends ContentType {
      * @return User
      */
     public static function getSessionUser() {
+        // Ensure the session data exists
+        if ( ! isset( $_SESSION['user_id'] ) ||
+             ! isset( $_SESSION['user_pass'] ) ) {
+            return 0;
+        }
+
         // Ensure no one has hacked the $_SESSION data somehow.
         list( $id, $pass ) = Database::escapeString( $_SESSION['user_id'],
                                                      $_SESSION['user_pass'] );
 
         // Confrim the result by creating a user from the database.
-        $res = $database::query( "SELECT *
-                                  FROM users
-                                  WHERE id=$id AND pass=$pass" );
+        $res = Database::query( "SELECT *
+                                 FROM users
+                                 WHERE id=$id
+                                   AND password='$pass'" );
 
-        if ( $res->num_rows ) {
+        if ( $res && $res->num_rows ) {
             $data = $res->fetch_assoc();
             $res->close();
             return new self( $data );
@@ -242,7 +247,7 @@ class User extends ContentType {
      */
     public function __construct( $args, $validate = false ) {
         // Perform the initialization of the arguments.
-        parent::__construct();
+        parent::__construct( $args );
 
         // Check if should validate the users existance.
         if ( $validate ) {

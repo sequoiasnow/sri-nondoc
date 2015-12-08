@@ -35,7 +35,7 @@ abstract class ContentType implements FormPrintable {
      */
     public function __construct( $data ) {
         foreach ( $data as $key => $val ) {
-            $data->$key = $val;
+            $this->$key = $val;
         }
 
         $this->data = $data;
