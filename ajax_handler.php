@@ -11,7 +11,18 @@ require_once 'definitions.php';
 $data = $_POST;
 
 // Ensure all necessary data exists.
-if ( ! isset( $data['get'] ) || ! isset( $data['content_type'] ) ) {
+if ( ! isset( $data['action'] ) ! isset( $data['request'] ) || ! isset( $data['content_type'] ) ) {
+    echo json_encode( array(
+        'error' => 'All fields not filled out.'
+    ) );
+    exit();
+}
+
+// Ensure that a user is logged in for the accessal of data.
+if ( ! User::getSessionUser() ) {
+    echo json_encode( array(
+        'error' => 'You lack the necessary credentials.'
+    ) );
     exit();
 }
 
@@ -24,20 +35,20 @@ if ( ! isset( $data['get'] ) || ! isset( $data['content_type'] ) ) {
  *   *   * Can be used in conjuncton with a 'id' statement to get specific id.
  *   *   * Are to return types, object, and rednered, rendered assumed.
  */
-$requestType = $data['get'];
+$action      = $data['action'];
+$requestType = $data['request'];
 $contentType = $data['content_type'];
 $returnType  = isset( $data['return_type'] ) ? $data['returnType'] : 'rendered';
 $id          = isset( $data['id'] ) ? $data['id'] : '';
 
-if ( $requestType == 'form' ) {
+if ( $requestType == 'form' && $action == 'get' ) {
     // Access the form and return its value.
     echo '' . Form::createForm( $contentType );
 }
 
-if ( $requestType == 'content' ) {
+if ( $requestType == 'content' && $action == 'get' ) {
 
     if ( ! defined( "$contentType::TableName" ) ) { exit(); }
-
 
     list( $type, $id ) = Database::escapeString( $contentType::TableName, $id );
 
@@ -46,15 +57,42 @@ if ( $requestType == 'content' ) {
 
     // Get the needed content.
     $result = Database::query( "SELECT * FROM $type $where" );
+    $objects = array();
 
-    if ( $result->num_rows ) {
-        $object = new $type( $result->fetch_assoc() );
+    // Transform the objects into an associative array.
+    while ( $row = $result->fetch_assoc() ) {
 
-        // Determine the necesary return type.
-        if ( $returnType == 'renderd' ) {
-            echo $object;
-        } else if ( $returnType == 'object' ) {
-            echo json_encode( $object );
-        }
+        $objects[] = new $type( $row );
+
     }
+
+    // Determine the necesary return type.
+    if ( $returnType == 'renderd' ) {
+        // Render each object calling the __toString method
+        foreach  ( $objects as $object ) {
+            echo $object;
+        }
+    } else if ( $returnType == 'object' ) {
+        // Print the result of a json encoded array of object data.
+        echo json_encode( $object );
+    }
+
+}
+
+
+/**
+ * There is a scenario where the update would need to be perforemd to allow
+ * for the deleteion of an element. In this case the element's id must be
+ * passed and the keyword delete used. To update an item should typically
+ * require a form and has not yet been implemented here.
+ */
+if ( $requestType == 'delete' && $action == 'set' && $id ) {
+    // Perform the initial recieving of the table name
+    if ( ! defined( "$contentType::TableName" ) ) { exit(); }
+
+    // Screen id and table name for malicious code.
+    list( $type, $id ) = Database::escapeString( $contentType::TableName, $id );
+
+    // Perform update on a specific element with id.
+    Database::query( "DELETE FROM $type WHERE id=$id" );
 }

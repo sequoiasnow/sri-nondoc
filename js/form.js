@@ -60,8 +60,8 @@
                 data: formData,
                 dataType: 'json'
             }).done( handleResponse )
-              .error(function(  error ) {
-                  console.log( error );
+              .error(function(  xhr ) {
+                  console.log( xhr.responseText );
                   handleResponse( false );
               });
         }.bind(this);

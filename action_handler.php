@@ -11,5 +11,8 @@ if ( isset( $_GET['action'] ) ) {
 
         // Call the actual action.
         Action::callActionFunc( $func );
+
+        // There is no need to unset sesssion variables as they are
+        // automatically destroyed. This allso allowes a form to be resubmited.
     }
 }

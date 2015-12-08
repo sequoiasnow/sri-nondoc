@@ -202,6 +202,32 @@ class User extends ContentType {
         return 'Hello World';
     }
 
+    /**
+     * Loggs a user in from $_SESSION variables, confirming that users
+     * validity.
+     *
+     * @return User
+     */
+    public static function getSessionUser() {
+        // Ensure no one has hacked the $_SESSION data somehow.
+        list( $id, $pass ) = Database::escapeString( $_SESSION['user_id'],
+                                                     $_SESSION['user_pass'] );
+
+        // Confrim the result by creating a user from the database.
+        $res = $database::query( "SELECT *
+                                  FROM users
+                                  WHERE id=$id AND pass=$pass" );
+
+        if ( $res->num_rows ) {
+            $data = $res->fetch_assoc();
+            $res->close();
+            return new self( $data );
+        }
+
+        // Return a empty value to indicate failure.
+        return 0;
+    }
+
     /// Variables as noted in mysql table.
     public $id;
     public $name;
