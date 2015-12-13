@@ -69,24 +69,32 @@ class API {
      * method.
      */
     private function establishGetObjects() {
-        // Establish the table name.
-        $tableName = $this->contentType::TableName;
+        $contentType = $this->contentType;
 
-        if ( $this->id ) {
+        // Establish the table name.
+        $tableName = $contentType::TableName;
+
+        if ( isset( $this->id ) ) {
+            $id = $this->id;
             // Deliver singular content if has an id.
             $sql = "SELECT * FROM $tableName WHERE id=$id";
             $res = Database::query( $sql );
 
-            if ( $row = $res->fetch_assoc() ) {
-                // Establish a new object of that type to be outputed.
-                if ( $this->returnType == ApiReturnType::Data ) {
-                    $this->objects = new $this->contentType( $row );
-                } else if ( $this->returnType == ApiReturnType::Rendered ) {
-                    $this->objects = '' . new $this->contentType( $row );
-                }
-            }
-
+            // Establish a new object of that type to be outputed.
+            $object = new $contentType( $res->fetch_assoc() );
             $res->close();
+
+            if ( $this->returnType == ApiReturnType::Form ) {
+                // Create a form for the element.
+                $form = Form::createForm( $this->contentType, $object );
+                $this->objects = '' . $form;
+            } else if ( $this->returnType == ApiReturnType::Data ) {
+                // Deliver singular content if has an id.
+                $this->objects = $object;
+            } else if ( $this->returnType == ApiReturnType::Rendered ) {
+                // Deliver the rendered content of that singular element.
+                $this->objects = '' . $object;
+            }
         } else if ( $this->returnType == ApiReturnType::Form ) {
             // Simply get the rendered form and add it to the objects array.
             $this->objects = '' . Form::createForm( $this->contentType );
@@ -101,11 +109,15 @@ class API {
             }
 
             while ( $row = $res->fetch_assoc() ) {
-                $this->objects[] = new $this->contentType( $row );
+
                 if ( $this->returnType == ApiReturnType::Data ) {
+                    // Add a new instance of the object to an array.
                     $this->objects[] = new $this->contentType( $row );
+
                 } else {
+                    // Add a rendered instance of this object to the array.
                     $this->objects .= ''. new $this->contentType( $row );
+
                 }
             }
         }
@@ -126,7 +138,8 @@ class API {
         }
 
         // Establish information about the content type.
-        $tableName = $this->contentType::TableName;
+        $contentType = $this->contentType;
+        $tableName = $contentType::TableName;
 
         // Ensure the id also exists.
         $res = Database::query( "SELECT * FROM $tableName WHERE id=$this->id" );
@@ -139,7 +152,7 @@ class API {
     }
 
     /**
-     * Saves an element of a content type to the database. 
+     * Saves an element of a content type to the database.
      *
      */
 
@@ -156,7 +169,7 @@ class API {
      */
     public function __construct( $url, $requestType = false ) {
         // Determine the nature of the url.
-        $args = str_split( '/'. $url );
+        $args = explode( '/', $url );
 
         // Splits up the conent type by the number of offsets.
         if ( isset( $args[0] ) ) {
@@ -177,6 +190,8 @@ class API {
                 // Tells the return type.
                 $this->returnType = $args[1];
             }
+        } else {
+            $this->returnType = ApiReturnType::Data;
         }
 
         // Determine the $requestType

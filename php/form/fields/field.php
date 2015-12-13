@@ -40,6 +40,11 @@ class Field implements ArrayAccess {
             $values = isset( $this->args['attributes'] ) ?
                       $this->args['attributes'] : array();
 
+            // Decreas the value for the element.
+            if ( isset( $this['value'] ) ) {
+                $values['value'] = $this['value'];
+            }
+
             // Use attribute values that could be stored as level one array.
             foreach ( self::$attrValues as $key ) {
                 if ( ! isset( $values[$key] ) && isset( $this->args[$key] ) ) {

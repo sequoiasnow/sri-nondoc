@@ -21,5 +21,8 @@ require_once ROOT_DIR . '/php/api/api.php';
 // Allow the use of forms.
 require_once ROOT_DIR . '/php/form/form.php';
 
+// Allowes the implementation of the api
+require_once ROOT_DIR . '/php/api/api.php';
+
 // Include information about the data types.
 require_once ROOT_DIR . '/php/content_types/ContentType.php';

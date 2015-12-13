@@ -70,7 +70,7 @@ class User extends ContentType {
             'user_name'       => 'name',
             'user_email'      => 'email',
             'user_password_1' => null,
-            'user_password_1' => null,
+            'user_password_2' => null,
         );
     }
 

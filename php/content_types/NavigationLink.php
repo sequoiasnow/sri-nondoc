@@ -121,7 +121,7 @@ class NavigationLink extends ContentType {
      *
      * @return string
      */
-    public function getName() {
+    public function getTitle() {
         return $this->title;
     }
 
