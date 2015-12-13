@@ -13,6 +13,12 @@ class Field implements ArrayAccess {
         'id', 'name', 'class', 'placeholder', 'submit-on-return',
     );
 
+    /// The function that validates the given field.
+    public $validation;
+
+    /// The name to be used as index in array.
+    public $name;
+
     /// The origional value of the field, unaltered.
     protected $rawValue;
 
@@ -31,7 +37,8 @@ class Field implements ArrayAccess {
     protected function getAttrStr( array $values = null ) {
         // Creates a values array as a default.
         if ( ! $values ) {
-            $values = isset( $this->args['attributes'] ) ? $this->args['attributes'] : array();
+            $values = isset( $this->args['attributes'] ) ?
+                      $this->args['attributes'] : array();
 
             // Use attribute values that could be stored as level one array.
             foreach ( self::$attrValues as $key ) {
@@ -69,6 +76,10 @@ class Field implements ArrayAccess {
      * Construct a field with given information concerning it.
      */
     public function __construct( $args ) {
+        $this->validation = isset( $args['validation'] ) ?
+                            $args['validation'] : function() {};
+
+        $this->name = $args['name'];
         $this->args = $args;
     }
 
@@ -147,3 +158,4 @@ include_once 'image_field.php';
 include_once 'password_field.php';
 include_once 'text_field.php';
 include_once 'textarea_field.php';
+include_once 'hidden_field.php';

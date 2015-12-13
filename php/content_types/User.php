@@ -18,6 +18,9 @@ class User extends ContentType {
                                       First and then Last, but just First is
                                       fine to.',
                 ),
+                'validation' => function( $value ) {
+                    return isset( $value );
+                }
             ) ),
             new TextField( array(
                 'name'   => 'user_email',
@@ -27,6 +30,9 @@ class User extends ContentType {
                                       email. This will largelly be used to
                                       reset passwords if need be.',
                 ),
+                'validation' => function( $value ) {
+                    return filter_var( $value, FILTER_VALIDATE_EMAIL );
+                }
             ) ),
             new PasswordField( array(
                 'name'   => 'user_password_1',
@@ -35,6 +41,9 @@ class User extends ContentType {
                     'description' => 'A unique password, please use at least
                                       8 characters, the more the better.',
                 ),
+                'validation' => function( $value, $all ) {
+                    return $value == $all['user_password_2'];
+                }
             ) ),
 
             new PasswordField( array(
@@ -43,6 +52,9 @@ class User extends ContentType {
                     'title'       => 'Confirm Password',
                     'description' => '',
                 ),
+                'validation' => function( $value, $all ) {
+                    return $value == $all['user_password_1'];
+                }
             ) ),
         );
     }
@@ -80,87 +92,6 @@ class User extends ContentType {
      */
     public static function getName() {
         return 'Users';
-    }
-
-    /**
-     * Returns the action to be taken, as a string.
-     *
-     * @return Action
-     */
-    public static function getAction() {
-        return new Action( array(  __CLASS__, 'handleFormSubmit' ) );
-    }
-
-    /**
-     * Handles the submital of a form. What is returned is given here to be
-     * acted upon as the form is validated. Typically the response is governed
-     * by ajax, thus, while header function will work, it is preffered to return
-     * and array which will dictate the manner of response.
-     *
-     * @param array $data
-     *
-     * @return array
-     */
-    public static function handleFormSubmit( array $data ) {
-        // Required fields.
-        $required = array(
-            'user_name', 'user_email', 'user_password_1', 'user_password_2'
-        );
-
-        // Any errors that may crop up are here displayed.
-        $invalids = array();
-        $emptys    = array();
-
-        // Check for any emptys.
-        foreach ( $required as $key ) {
-            if ( ! isset( $data[$key] ) ) {
-                $emptys[]   = $key;
-                $data[$key] = '';
-            }
-        }
-
-        // Check against emails.
-        if ( ! filter_var( $data['user_email'], FILTER_VALIDATE_EMAIL ) ) {
-            $invalids[] = $data['user_email'];
-        }
-
-        // Check the passwords match.
-        if ( $data['user_password_1'] != $data['user_password_2'] ) {
-            $invalids[] = array( 'user_password_1', 'user_password_2' );
-        }
-
-
-        // Determine the correct action to take.
-        $returnArray = array();
-        if ( count( $invalids ) ) {
-            $returnArray['invalids'] = $invalids;
-        }
-
-        if ( count( $emptys ) ) {
-            $returnArray['emptys'] = $emptys;
-        }
-
-        if ( ! count( $returnArray ) ) {
-            // Create a new user to save.
-            // Data for the user.
-            $userData = array(
-                'email'    => $data['user_email'],
-                'name'     => $data['user_name'],
-                'password' => $data['user_password_1'],
-            );
-
-            // Check if there is an id to perform the save operation.
-            if ( isset( $data['id'] ) ) {
-                $userData['id'] = $data['id'];
-            }
-
-            $user = new self( $userData );
-
-            // Insert into the database.
-            $returnArray['successs'] = Database::save( __CLASS__, $user );
-        }
-
-        return $returnArray;
     }
 
     /**

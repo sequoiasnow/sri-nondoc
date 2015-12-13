@@ -23,11 +23,4 @@ interface FormPrintable {
      * @return string
      */
     public static function getName();
-
-    /**
-     * Returns the action to be taken, as a string.
-     *
-     * @return string
-     */
-    public static function getAction();
 }

@@ -139,6 +139,11 @@ class API {
     }
 
     /**
+     * Saves an element of a content type to the database. 
+     *
+     */
+
+    /**
      * Constructs a new instance of the Api which interacts with the database.
      * The result is outputed as json.
      *

@@ -4,18 +4,67 @@ require_once 'fields/field.php';
 
 class Form {
     /**
+     * Performes validation for form on completion. Also saves the form into
+     * the database. Uses the objects form validation and formFieldMap.
+     *
+     * @param array $data.
+     *
+     * @return array
+     */
+    public static function handleContentTypeForm( $data ) {
+        if ( ! isset( $data['content_type'] ) ) {
+            return array( 'errors' => array( 'no content type' ) );
+        }
+
+        // Determine the content type for the existing data.
+        $contentType = $data['content_type'];
+
+        // Get the fields for the content type.
+        $fullFields = $contentType::getFields();
+
+        // All erros to be returned.
+        $invalids = array();
+        $emptys   = array();
+
+        foreach ( $fullFields as $field ) {
+            // Check if the field is empty.
+            if ( ! isset( $data[$field->name] ) ) {
+                $emptys[] = $field->name;
+                continue;
+            }
+
+            // Check if the field is valid
+            $validation = $field->validate;
+            if ( ! $validation( $data[$field->name], $data ) ) {
+                $invalids[] = $field->name;
+            }
+        }
+
+        if ( count( $invalids ) || count( $emptys ) ) {
+            return array(
+                'invalids' => $invalids,
+                'emptys'   => $emptys,
+            );
+        } else {
+            return array( 'success' => true );
+        }
+    }
+
+    /**
      * Creates a new form instance from a form printable class, pulling the
      * data from it.
      *
      * @param FormPrintable $class
+     * @param ContentType $object
      *
      * @return Form
      */
-    public static function createForm( $class ) {
+    public static function createForm( $class, $object = 0 ) {
         $name   = $class::getName();
         $fields = $class::getFields();
         $desc   = $class::getDescription();
-        $action = $class::getAction();
+
+        $nameFieldMap = $class::getFormFieldMap();
 
         // Loop through the fields to change into objects if need be.
         foreach ( $fields as &$field ) {
@@ -29,7 +78,26 @@ class Form {
 
                 $field = new $className( $field );
             }
+
+            if ( $object ) {
+                // Get the field offset from the name.
+                $objectField = $nameFieldMap[$field['name']];
+
+                // Go through the values of the field and fill their values.
+                if ( $objectField && isset( $object->$objectField ) ) {
+                    $field['value'] = $object->$objectField;
+                }
+            }
         }
+
+        // Add a hidden field for the content type...
+        $fields[] = new HiddenField( array(
+            'name'  => 'content_type',
+            'value' => $class,
+        ) );
+
+        // Create the action for the form submission.
+        $action = new Action( array( __CLASS__, 'handleContentTypeForm' ) );
 
         // Return the newly created form class...
         return new self( array(
