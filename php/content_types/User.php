@@ -48,6 +48,21 @@ class User extends ContentType {
     }
 
     /**
+     * Returns a default map of the fields for the accessal of ajax data.
+     * This allowes the form to be populated with data from this instance.
+     *
+     * @return array.
+     */
+    public static function getFormFieldMap() {
+        return array(
+            'user_name'       => 'name',
+            'user_email'      => 'email',
+            'user_password_1' => null,
+            'user_password_1' => null,
+        );
+    }
+
+    /**
      * Returns a description of the given form.
      *
      * @return string
@@ -266,5 +281,24 @@ class User extends ContentType {
                 throw new Exception( "Not Valid User $this->name" );
             }
         }
+    }
+
+    /**
+     * The title of a user is given by the getTitle function, it is dispalyed
+     * below.
+     *
+     * @return string
+     */
+    public function getTitle() {
+        return $this->name;
+    }
+
+    /**
+     * Print a string with the user rendered.
+     *
+     * @return string
+     */
+    public function __toString() {
+        return htmlspecialchars( $this->name );
     }
 }

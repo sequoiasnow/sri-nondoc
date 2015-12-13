@@ -1,18 +1,19 @@
 <?php
 
-abstract class ContentType implements FormPrintable {
+abstract class ContentType implements FormPrintable, AjaxRetrievable {
     /**
-     * Return all instances of a content type from the database.
+     * Perform a query from the database and iterates through all the
+     * fields to create the reuslt.
      *
-     * @see self::TableName
+     * @see Database::query
+     *
+     * @param string $query
      *
      * @return [self]
      */
-    public static function getAllInstances() {
-        $tableName = self::TableName;
-
+    public static function getFromQuery( $query ) {
         // Query the database for the result.
-        $result = Database::query( "SELECT * FROM $tableName" );
+        $result = Database::query( $query );
 
         // Loop through the result transforming each value into a class.
         $return = array();
@@ -22,6 +23,18 @@ abstract class ContentType implements FormPrintable {
         $result->close();
 
         return $return;
+    }
+
+    /**
+     * Return all instances of a content type from the database.
+     *
+     * @see self::TableName
+     *
+     * @return [self]
+     */
+    public static function getAllInstances() {
+        $tableName = self::TableName;
+        return self::getFromQuery( "SELECT * FROM $tableName" );
     }
 
     /// Stores all data, key value pairing exact as in a database.

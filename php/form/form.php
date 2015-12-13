@@ -8,15 +8,14 @@ class Form {
      * data from it.
      *
      * @param FormPrintable $class
-     * @param string $action
      *
      * @return Form
      */
-    public static function createForm( $class, $action = '' ) {
+    public static function createForm( $class ) {
         $name   = $class::getName();
         $fields = $class::getFields();
         $desc   = $class::getDescription();
-        $action = $action ?: $class::getAction();
+        $action = $class::getAction();
 
         // Loop through the fields to change into objects if need be.
         foreach ( $fields as &$field ) {
@@ -69,12 +68,16 @@ class Form {
     }
 
     /**
-     * Creates a new instance of a form with arguments.
+     * Creates a new instance of a form with arguments
+     *
+     * @param array $args
      */
-    public function __construct( $args ) {
+    public function __construct( $args, $addTitle = true ) {
         foreach ( $args as $key => $val ) {
             $this->$key = $val;
         }
+
+        // Alter the fields
     }
 
     /**

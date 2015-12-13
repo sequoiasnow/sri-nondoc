@@ -6,7 +6,7 @@
      * Takes the action and uses ajax to get a response. The response is then
      * handled and returned back to the page as a json result.
      */
-    $.fn.customForm = function() {
+    $.fn.customForm = function( validresponse ) {
         var action = this.attr( 'action' );
 
         var handleResponse = function( response ) {
@@ -26,14 +26,15 @@
                     this.find( 'input[name="' + key + '"]' ).addClass( 'empty' ).removeClass( 'invalid valid' );
                 }
 
-            } else {
-                console.log( 'ERROR' );
-                console.log( response );
-
-                if ( response.errors ) {
+            } else if ( response.errors ) {
                     for ( var key of response.errors ) {
                         this.find( 'input[name="' + key + '"]' ).addClass( 'error' ).removeClass( 'invalid valid empty' );
                     }
+                }
+            } else {
+                if ( validresponse ) {
+                    // Assume all ok
+                    validresponse();
                 }
             }
         }.bind( this );

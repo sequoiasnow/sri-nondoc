@@ -39,16 +39,21 @@ loadJSFile( 'manage' );
             </div>
         </div>
 
-        <div id="content-types">
+        <ul id="content-types">
             <?php /* Load the content types from the array of their values */ ?>
             <?php foreach ( $contentTypes as $type ) : ?>
 
-                <div class="content-type" data-classname="<?php print $type::getName(); ?>">
-                    <span><?php print $type::getName(); ?></span>
-                </div>
+                <li class="content-type" data-classname="<?php print $type; ?>">
+                    <div class="name">
+                        <span><?php print $type::getName(); ?></span>
+                    </div>
+                    <ul class="instances">
+                        <li class="add-new"><i class="fa fa-plus"></i></li>
+                    </ul>
+                </li>
 
             <?php endforeach; ?>
-        </div> <!-- #content-types -->
+        </ul> <!-- #content-types -->
 
     </div> <!-- #page -->
 

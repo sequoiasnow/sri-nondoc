@@ -40,6 +40,19 @@ class NavigationLink extends ContentType {
     }
 
     /**
+     * Returns a default map of the fields for the accessal of ajax data.
+     * This allowes the form to be populated with data from this instance.
+     *
+     * @return array.
+     */
+    public static function getFormFieldMap() {
+        return array(
+            'link_name' => 'title',
+            'href'      => 'href',
+        );
+    }
+
+    /**
      * Returns a description of the given form.
      *
      * @return string
@@ -101,6 +114,15 @@ class NavigationLink extends ContentType {
         foreach ( $data as $k => $v ) {
             $this->$k = $v;
         }
+    }
+
+    /**
+     * The name of an instance of the NavigationLink class.
+     *
+     * @return string
+     */
+    public function getName() {
+        return $this->title;
     }
 
     /**

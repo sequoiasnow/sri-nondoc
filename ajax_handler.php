@@ -11,7 +11,8 @@ require_once 'definitions.php';
 $data = $_POST;
 
 // Ensure all necessary data exists.
-if ( ! isset( $data['action'] ) ! isset( $data['request'] ) || ! isset( $data['content_type'] ) ) {
+if ( ! isset( $data['action'] ) || ! isset( $data['request'] )
+  || ! isset( $data['contentType'] ) ) {
     echo json_encode( array(
         'error' => 'All fields not filled out.'
     ) );
@@ -37,13 +38,20 @@ if ( ! User::getSessionUser() ) {
  */
 $action      = $data['action'];
 $requestType = $data['request'];
-$contentType = $data['content_type'];
-$returnType  = isset( $data['return_type'] ) ? $data['returnType'] : 'rendered';
+$contentType = $data['contentType'];
+$returnType  = isset( $data['returnType'] ) ? $data['returnType'] : 'rendered';
 $id          = isset( $data['id'] ) ? $data['id'] : '';
 
 if ( $requestType == 'form' && $action == 'get' ) {
     // Access the form and return its value.
     echo '' . Form::createForm( $contentType );
+}
+
+if ( $requestType == 'form_map' && $action == 'get' ) {
+    // Access a content type's form to data maps.
+    if ( $data = $contentType::getFormFieldMap() ) {
+        echo json_encode( $data );
+    }
 }
 
 if ( $requestType == 'content' && $action == 'get' ) {
@@ -61,9 +69,12 @@ if ( $requestType == 'content' && $action == 'get' ) {
 
     // Transform the objects into an associative array.
     while ( $row = $result->fetch_assoc() ) {
+        $object = new $contentType( $row );
 
-        $objects[] = new $type( $row );
+        // Ensure the object has an accessible title.
+        $object->title = $object->getTitle();
 
+        $objects[] = $object;
     }
 
     // Determine the necesary return type.
@@ -74,7 +85,7 @@ if ( $requestType == 'content' && $action == 'get' ) {
         }
     } else if ( $returnType == 'object' ) {
         // Print the result of a json encoded array of object data.
-        echo json_encode( $object );
+        echo json_encode( $objects );
     }
 
 }

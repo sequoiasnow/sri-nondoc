@@ -16,7 +16,7 @@ require_once ROOT_DIR . '/config.php';
 require_once ROOT_DIR . '/php/database/database.php';
 
 // Allow the use of actions in form.
-require_once ROOT_DIR . '/php/actions/actions.php';
+require_once ROOT_DIR . '/php/api/api.php';
 
 // Allow the use of forms.
 require_once ROOT_DIR . '/php/form/form.php';
