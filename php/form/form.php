@@ -96,6 +96,14 @@ class Form {
             'value' => $class,
         ) );
 
+        // Add a field for the id of the object.
+        if ( $object ) {
+            $fields[] = new HiddenField( array(
+                'name'  => 'id',
+                'value' => $object->id,
+            ) );
+        }
+
         // Create the action for the form submission.
         $action = new Action( array( __CLASS__, 'handleContentTypeForm' ) );
 
@@ -139,13 +147,17 @@ class Form {
      * Creates a new instance of a form with arguments
      *
      * @param array $args
+     * @param bool $addSubmit
      */
-    public function __construct( $args, $addTitle = true ) {
+    public function __construct( $args, $addSubmit = true ) {
         foreach ( $args as $key => $val ) {
             $this->$key = $val;
         }
 
         // Alter the fields
+        if ( $addSubmit ) {
+            $this->fields[] = new SubmitField();
+        }
     }
 
     /**

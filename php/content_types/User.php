@@ -120,7 +120,7 @@ class User extends ContentType {
 
         $password = hash( 'sha256', $data['password'] );
         $username = Database::escapeString( $data['user_email'] );
-
+        
         // Check if the user exits...
         $result = Database::query( "SELECT *
                                     FROM users

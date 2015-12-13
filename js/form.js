@@ -27,9 +27,8 @@
                 }
 
             } else if ( response.errors ) {
-                    for ( var key of response.errors ) {
-                        this.find( 'input[name="' + key + '"]' ).addClass( 'error' ).removeClass( 'invalid valid empty' );
-                    }
+                for ( var key of response.errors ) {
+                    this.find( 'input[name="' + key + '"]' ).addClass( 'error' ).removeClass( 'invalid valid empty' );
                 }
             } else {
                 if ( validresponse ) {

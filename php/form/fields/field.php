@@ -79,12 +79,15 @@ class Field implements ArrayAccess {
 
     /**
      * Construct a field with given information concerning it.
+     *
+     * @param array $args
      */
-    public function __construct( $args ) {
+    public function __construct( $args = array() ) {
         $this->validation = isset( $args['validation'] ) ?
                             $args['validation'] : function() {};
 
-        $this->name = $args['name'];
+
+        $this->name = isset( $args['name'] ) ? $args['name'] : '';
         $this->args = $args;
     }
 
@@ -159,8 +162,9 @@ class Field implements ArrayAccess {
 
 
 // Include all the fields...
-include_once 'image_field.php';
-include_once 'password_field.php';
-include_once 'text_field.php';
-include_once 'textarea_field.php';
-include_once 'hidden_field.php';
+include 'image_field.php';
+include 'password_field.php';
+include 'text_field.php';
+include 'textarea_field.php';
+include 'hidden_field.php';
+include 'submit_field.php';

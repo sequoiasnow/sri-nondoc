@@ -48,7 +48,7 @@ loadJSFile( 'manage' );
                         <span><?php print $type::getName(); ?></span>
                     </div>
                     <ul class="instances">
-                        <li class="add-new"><i class="fa fa-plus"></i></li>
+                        <li class="add-new instance"><i class="fa fa-plus"></i></li>
                     </ul>
                 </li>
 
