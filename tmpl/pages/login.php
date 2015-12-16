@@ -10,7 +10,7 @@ $loginForm = new Form( array(
             'name'        => 'user_email',
             'placeholder' => 'example@email.com',
             'public'      => array(
-                'title'       => 'Username',
+                'title'  => 'Username',
             ),
         ) ),
         new PasswordField( array(

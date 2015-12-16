@@ -5,9 +5,9 @@
  *
  * @see init/mysql/NavigationLink.mysql
  */
-class NavigationLink extends ContentType {
+class AboutPerson extends ContentType {
     /// The table name specified for this content type
-    const TableName = 'navigation_links';
+    const TableName = 'about_person';
 
     /**
      * Return all the fields relevant to the form.
