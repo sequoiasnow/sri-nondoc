@@ -112,6 +112,7 @@
 
 })( jQuery );
 
+
 /**
  * Apply the atomic form logic to every form
  */
