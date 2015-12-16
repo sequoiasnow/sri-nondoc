@@ -22,9 +22,15 @@ class Form {
         // Get the fields for the content type.
         $fullFields = $contentType::getFields();
 
+        // Get the map for the full fields.
+        $fieldMap = $contentType::getFormFieldMap();
+
         // All erros to be returned.
         $invalids = array();
         $emptys   = array();
+
+        // An array which will be used to save data.
+        $args     = array();
 
         foreach ( $fullFields as $field ) {
             // Check if the field is empty.
@@ -34,10 +40,13 @@ class Form {
             }
 
             // Check if the field is valid
-            $validation = $field->validate;
+            $validation = $field->validation;
             if ( ! $validation( $data[$field->name], $data ) ) {
                 $invalids[] = $field->name;
+                continue;
             }
+            // Save the valid data to the field.
+            $args[$fieldMap[$field->name]] = $data[$field->name];
         }
 
         if ( count( $invalids ) || count( $emptys ) ) {
@@ -46,6 +55,13 @@ class Form {
                 'emptys'   => $emptys,
             );
         } else {
+            // Create the object.
+            $object = new $contentType( $args );
+
+            // Save the object to the database.
+            Database::save( $object );
+
+            //
             return array( 'success' => true );
         }
     }
@@ -158,6 +174,11 @@ class Form {
         if ( $addSubmit ) {
             $this->fields[] = new SubmitField();
         }
+
+        // Load the form javascript if possible.
+        if ( function_exists( 'loadJSFile' ) ) {
+            loadJSFile( 'form' );
+        }
     }
 
     /**
@@ -171,6 +192,8 @@ class Form {
         foreach ( $this->fields as $field ) {
             $html .= "\n" . $field;
         }
+
+        $html .= '<div class="all-field-description"></div>';
 
         $html .= '</form>';
         return $html;

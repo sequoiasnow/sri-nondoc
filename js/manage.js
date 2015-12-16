@@ -76,8 +76,17 @@ jQuery(document).ready(function($) {
         $( '#content-types .content-type .instance' ).click(function() {
             $( this ).getInstanceForm(function( form ) {
                 $( '#content-container' ).html( form );
+
+                // Allow the form to be bound.
+                $( 'form' ).each(function() {
+                    $( this ).customForm();
+                });
             });
-            getAllInstances();
+
+            // Allowes identification of what is the currently selected elem.
+            $( '#content-types .clicked' ).removeClass( 'clicked' );
+            $( this ).addClass( 'clicked' );
+            $( this ).parents( '.content-type' ).addClass( 'clicked' );
         });
     }
 

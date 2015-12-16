@@ -84,7 +84,7 @@ class Field implements ArrayAccess {
      */
     public function __construct( $args = array() ) {
         $this->validation = isset( $args['validation'] ) ?
-                            $args['validation'] : function() {};
+                            $args['validation'] : function() { return true; };
 
 
         $this->name = isset( $args['name'] ) ? $args['name'] : '';

@@ -7,6 +7,20 @@
      * handled and returned back to the page as a json result.
      */
     $.fn.customForm = function( validresponse ) {
+        // Handles the visual side of displaying the description
+        var descCont = this.find( '.all-field-description' ).first();
+        this.find( 'input' ).focus(function() {
+            var desc = $( this ).siblings( '.field-description' );
+
+            if ( ! desc ) {
+                descCont.addClass( 'no-content' );
+            } else {
+                descCont.removeClass( 'no-content' );
+                descCont.html( desc.html() );
+            }
+        });
+
+
         var action = this.attr( 'action' );
 
         var handleResponse = function( response ) {

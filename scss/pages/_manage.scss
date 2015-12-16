@@ -1,3 +1,103 @@
 body.manage {
-    
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+
+    #page {
+        width: 100%;
+    }
+
+    #navigation {
+        clear: both;
+        width: 100%;
+        padding: 5px;
+        background-color: #2B3643;
+
+        // Align navigation items.
+        @include display-flex;
+        @include flex-direction( row );
+        @include justify-content( flex-end );
+
+        > div {
+            margin: 5px 15px;
+            color: white;
+        }
+
+        #user-logout {
+            cursor: pointer;
+        }
+    }
+
+    #content {
+        background-color: #f3f5f6;
+        margin-left: 200px;
+    }
+
+    #content-container {
+        padding: 30px;
+        position: relative;
+        min-height: 100vh;
+
+        // Center the content.
+        @include display-flex;
+        @include justify-content( center );
+
+        form {
+            width: 50%;
+        }
+    }
+
+    #content-types {
+        @include box-sizing(border-box);
+
+        background-color: #3D4B5C;
+        width: 200px;
+        float: left;
+        margin: 0;
+        min-height: 100vh;
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        > ul > li {
+            padding: 0;
+
+            > .name {
+                padding-left: 10px;
+                border-bottom: 2px solid #435060;
+
+                &:last-child{ border-bottom: none; }
+            }
+
+            li {
+                padding-left: 30px;
+            }
+        }
+
+        > ul > li.content-type > .name  {
+            padding: 5px;
+            border-bottom: 2px solid #435060;
+
+            &:last-child{ border-bottom: none; }
+        }
+
+        li {
+            color: #b4bcc8;
+            padding: 5px;
+        }
+
+        li.content-type > .name, .instance {
+            @include transition( all 0.2s ease-out );
+        }
+        li.content-type.clicked > .name {
+             border-bottom: none;
+            background-color: #36C6D3;
+            color: white;
+        }
+        .instance.clicked {
+            background-color: lighten(#435060, 15);
+            color: white;
+        }
+    }
 }

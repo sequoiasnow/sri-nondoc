@@ -1,9 +1,6 @@
 body.login {
     background-color: $color__dark;
 
-}
-
-* {
     @include box-sizing( border-box );
     @include transition( all 0.2s ease-in );
 }

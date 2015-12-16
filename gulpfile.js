@@ -42,7 +42,6 @@ gulp.task( 'serve', function() {
 
 gulp.task( 'watch', function() {
     gulp.watch( 'scss/**/*.scss', [ 'compass' ] );
-    gulp.watch( 'js/**/*.js', [ 'js' ] );
 });
 
 gulp.task( 'default', [ 'compass' ] );

@@ -10,6 +10,9 @@
 // Allow for the proper css styles to apply.
 $bodyClasses = array( 'manage' );
 
+// Show the title of the page.
+$pageTitle = 'Manage';
+
 // Determine all the classes that will be used as form types.
 $contentTypes = array();
 foreach ( get_declared_classes() as $class ) {
@@ -24,36 +27,39 @@ include __DIR__ . '/../components/header.php';
 loadJSFile( 'manage' );
 ?>
 
+
+    <div id="navigation">
+
+        <div id="user-info"><?php print $user->name; ?></div>
+
+        <div id="user-logout">Logout</div>
+
+    </div> <!-- #navigation -->
+
     <div id="page">
 
-        <div id="navigation">
+        <div id="content-types">
+            <ul>
+                <?php /* Load the content types from the array of their values */ ?>
+                <?php foreach ( $contentTypes as $type ) : ?>
 
-            <div id="user-info"><?php print $user->name; ?></div>
+                    <li class="content-type" data-classname="<?php print $type; ?>">
+                        <div class="name">
+                            <span><?php print $type::getName(); ?></span>
+                        </div>
+                        <ul class="instances">
+                            <li class="add-new instance"><i class="fa fa-plus"></i></li>
+                        </ul>
+                    </li>
 
-            <div id="user-logout">Logout</div>
-
-        </div>
+                <?php endforeach; ?>
+            </ul>
+        </div> <!-- #content-types -->
 
         <div id="content">
             <div id="content-container">
             </div>
         </div>
-
-        <ul id="content-types">
-            <?php /* Load the content types from the array of their values */ ?>
-            <?php foreach ( $contentTypes as $type ) : ?>
-
-                <li class="content-type" data-classname="<?php print $type; ?>">
-                    <div class="name">
-                        <span><?php print $type::getName(); ?></span>
-                    </div>
-                    <ul class="instances">
-                        <li class="add-new instance"><i class="fa fa-plus"></i></li>
-                    </ul>
-                </li>
-
-            <?php endforeach; ?>
-        </ul> <!-- #content-types -->
 
     </div> <!-- #page -->
 

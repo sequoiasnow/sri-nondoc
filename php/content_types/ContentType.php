@@ -38,7 +38,7 @@ abstract class ContentType implements FormPrintable, AjaxRetrievable {
     }
 
     /// Stores all data, key value pairing exact as in a database.
-    private $data;
+    public $data;
 
     /// Stores the title for access by the other properties.
     public $_title;
@@ -65,7 +65,13 @@ abstract class ContentType implements FormPrintable, AjaxRetrievable {
      * @return array
      */
     public function getData() {
-        return $this->data;
+        $data = array();
+        foreach ( $this as $key => $val ) {
+            if ( strpos( $key, '_' ) !== 0 ) {
+                $array[$key] = $val;
+            }
+        }
+        return $data;
     }
 }
 

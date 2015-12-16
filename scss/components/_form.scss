@@ -1,5 +1,6 @@
 $input-padding: 10px;
-$input-font-size: 16px;
+$input-font-size: 13px;
+$field-description-width: 250px;
 
 form, form * {
     @include transition( all 0.25s ease-out );
@@ -47,6 +48,63 @@ form .form-field input {
 /* Style for the font awesome icon... */
 form .form-field {
     position: relative;
+}
+
+/* Style the form name. */
+form .form-field .field-name {
+    @include transform( translateY( -50% ) );
+    position: absolute;
+    right: 105%;
+    top: 50%;
+    width: auto;
+    text-align: right;
+    white-space: nowrap;
+
+    &::after { content: ':'; }
+}
+
+/* Style the submit button. */
+form .form-field.field-type-submit {
+    width: 100%;
+    @include display-flex;
+    @include justify-content( center );
+
+    input {
+        width: auto;
+        padding: 10px 20px;
+        border-radius: 8px 0 8px 0;
+        background-color: #36C6D3;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+/* Style the form description */
+form .form-field .field-description { display: none; }
+
+form .all-field-description {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: $field-description-width;
+    padding: 10px;
+    border-left: 1px solid #ccc;
+    background-color: white;
+    opacity: 1;
+
+    &::before {
+        content: 'Field Decription';
+        font-weight: bold;
+        text-align: center;
+        width: 100%;
+        margin: 20px;
+        display: block;
+    }
+}
+
+form .all-field-description.no-content {
+    opacity: 0;
 }
 
 form .form-field .fa {

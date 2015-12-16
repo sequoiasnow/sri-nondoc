@@ -205,6 +205,8 @@ class Database {
            return true;
        }
 
+       print_r( $object->getData() );
+
        // Insert as a new object.
        self::insert( 'users', $object->getData() );
 
