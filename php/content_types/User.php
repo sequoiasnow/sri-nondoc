@@ -138,6 +138,11 @@ class User extends ContentType {
                                     WHERE email='$username'
                                       AND password='$password'" );
 
+        echo "the query is: SELECT *
+                                    FROM users
+                                    WHERE email='$username'
+                                      AND password='$password'";
+
         print_r( $result );
 
         if ( $result->num_rows ) {
