@@ -3,11 +3,11 @@ session_start();
 // The path to the root directory.
 define( 'ROOT_DIR', __DIR__ );
 
-// Define where a user can log in to the page.
-define( 'USER_LOGIN', WEB_ROOT . '/login' );
-
 // Load the config file for the site.
 require_once ROOT_DIR . '/config.php';
+
+// Define where a user can log in to the page.
+define( 'USER_LOGIN', WEB_ROOT . '/login' );
 
 // Allow requests to be made to the database...
 require_once ROOT_DIR . '/php/database/database.php';

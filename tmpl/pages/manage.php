@@ -32,7 +32,7 @@ loadJSFile( 'manage' );
 
         <div id="user-info"><?php print $user->name; ?></div>
 
-        <div id="user-logout">Logout</div>
+        <div id="user-logout"><a href="logout.php">Logout</a></div>
 
     </div> <!-- #navigation -->
 
