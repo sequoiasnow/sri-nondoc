@@ -5,9 +5,9 @@
  *
  * @see init/mysql/NavigationLink.mysql
  */
-class AboutPerson extends ContentType {
+class TechnologyElement extends ContentType {
     /// The table name specified for this content type
-    const TableName = 'about_person';
+    const TableName = 'technology_element';
 
     /**
      * Return all the fields relevant to the form.
@@ -19,25 +19,17 @@ class AboutPerson extends ContentType {
             new TextField( array(
                 'name'   => 'name',
                 'public' => array(
-                    'title'       => 'Name of Person',
-                    'description' => 'The name of the person that the
-                                      about person element wil be about',
-                ),
-            ) ),
-            new TextField( array(
-                'name'   => 'photo',
-                'public' => array(
-                    'title' => 'Image File Name',
-                    'description' => 'File name of the image that will be
-                                      referenced for the about person',
+                    'title'       => 'Name of Element',
+                    'description' => 'The name of the element that will
+                                      be displayed on the technology page',
                 ),
             ) ),
             new TextField( array(
                 'name'   => 'description',
                 'public' => array(
                     'title' => 'Description',
-                    'description' => 'General description of the person and
-                                      their job',
+                    'description' => 'Description of the technology site that
+                                      will be described',
                 ),
             ) ),
         );

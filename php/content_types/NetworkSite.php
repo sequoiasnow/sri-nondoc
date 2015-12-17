@@ -5,9 +5,9 @@
  *
  * @see init/mysql/NavigationLink.mysql
  */
-class AboutPerson extends ContentType {
+class NetworkSite extends ContentType {
     /// The table name specified for this content type
-    const TableName = 'about_person';
+    const TableName = 'network_site';
 
     /**
      * Return all the fields relevant to the form.
@@ -19,25 +19,17 @@ class AboutPerson extends ContentType {
             new TextField( array(
                 'name'   => 'name',
                 'public' => array(
-                    'title'       => 'Name of Person',
-                    'description' => 'The name of the person that the
-                                      about person element wil be about',
-                ),
-            ) ),
-            new TextField( array(
-                'name'   => 'photo',
-                'public' => array(
-                    'title' => 'Image File Name',
-                    'description' => 'File name of the image that will be
-                                      referenced for the about person',
+                    'title'       => 'Name of Element',
+                    'description' => 'The name of the element that will
+                                      be displayed on the network page',
                 ),
             ) ),
             new TextField( array(
                 'name'   => 'description',
                 'public' => array(
                     'title' => 'Description',
-                    'description' => 'General description of the person and
-                                      their job',
+                    'description' => 'Description of the site or part of 
+                                      the network that will be displayed',
                 ),
             ) ),
         );
