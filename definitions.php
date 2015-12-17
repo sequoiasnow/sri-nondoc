@@ -3,9 +3,6 @@ session_start();
 // The path to the root directory.
 define( 'ROOT_DIR', __DIR__ );
 
-// Define the web root for the system.
-define( 'WEB_ROOT', 'http://localhost/~sequoiasnow/work/sri-nondoc' );
-
 // Define where a user can log in to the page.
 define( 'USER_LOGIN', WEB_ROOT . '/login' );
 
