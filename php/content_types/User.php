@@ -69,9 +69,20 @@ class User extends ContentType {
         return array(
             'user_name'       => 'name',
             'user_email'      => 'email',
-            'user_password_1' => null,
-            'user_password_2' => null,
+            'user_password_1' => 'password',
+            'user_password_2' => 'password',
         );
+    }
+
+    /**
+     * Ensures the password is saved as a hash.
+     *
+     * @param string $pass
+     *
+     * @return string
+     */
+    public static function hookSaveAs__password( $pass ) {
+        return hash( 'sha256', $pass );
     }
 
     /**
@@ -120,7 +131,7 @@ class User extends ContentType {
 
         $password = hash( 'sha256', $data['password'] );
         $username = Database::escapeString( $data['user_email'] );
-        
+
         // Check if the user exits...
         $result = Database::query( "SELECT *
                                     FROM users

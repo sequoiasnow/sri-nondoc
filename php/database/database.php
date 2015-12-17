@@ -79,7 +79,7 @@ class Database {
     protected static function makeArrayColVal( $array ) {
         return array_map( function( $k, $v ) {
             return "`$k`='$v'";
-        }, array_keys( $where ), array_values( $where ) );
+        }, array_keys( $array ), array_values( $array ) );
     }
 
     /**
@@ -91,6 +91,38 @@ class Database {
      */
     protected static function getTableName( $name ) {
         return  $name;
+    }
+
+    /**
+     * Filter out all emptys from the array.
+     *
+     * @param array $array
+     *
+     * @return array
+     */
+    protected static function filterEmptyArray( $array ) {
+        $final = array();
+        foreach ( $array as $key => $val ) {
+            if ( $val ) {
+                $final[$key] = $val;
+            }
+        }
+        return $final;
+    }
+
+    /**
+     * Adds quots to every value in an array.
+     *
+     * @param array $array
+     * @param char $quote
+     *
+     * @return array
+     */
+    protected static function addQuotes( $array, $quote ) {
+        foreach ( $array as &$val ) {
+            $val = $quote . $val . $quote;
+        }
+        return $array;
     }
 
     /**
@@ -151,11 +183,19 @@ class Database {
      * @return mysqli::result || false
      */
     public static function insert( $table, $data ) {
+        $data = self::filterEmptyArray( $data );
+
+
+        $keys   = self::addQuotes( array_keys( $data ), '`' );
+        $values = self::addQuotes( array_values( $data ), '\'' );
+
         // Create the query string.
         $query = 'INSERT INTO ' . self::getTableName( $table ) . ' ';
-        $query .= '(' . implode( array_keys( $data ), ', ' ) . ')' . ' ';
-        $query .= 'VALUES (' . implode( array_values( $data ), ', ' ) . ')';
+        $query .= '(' . implode( $keys, ', ' ) . ')' . ' ';
+        $query .= 'VALUES (' . implode( $values, ', ' ) . ')';
 
+        echo $query
+;
         // Get the connection
         $connection = self::getConnection();
 
@@ -171,8 +211,9 @@ class Database {
      * @return mysqli::result || false
      */
     public static function update( $table, $data, $where ) {
+        $data = self::filterEmptyArray( $data );
         // Create the query string.
-        $query = 'UPDATAE ' . self::getTableName( $table ) . ' ';
+        $query = 'UPDATE ' . self::getTableName( $table ) . ' ';
         $query .= 'SET ' . implode( self::makeArrayColVal( $data ), ', ' ) . ' ';
         $query .= 'WHERE ' . implode( self::makeArrayColVal( $where ), ', ' );
 
@@ -200,21 +241,22 @@ class Database {
        if ( ! defined( get_class( $object ) . '::TableName' ) ) { return false; }
        $tableName = constant( get_class( $object ) . '::TableName'  );
 
-       if ( $id && count( self::select( array( '*' ), $tableName, array( 'id' => $id ) ) ) ) {
-           self::update( 'users', $object->getData(), array( 'id' => $id ) );
-           return true;
+       if ( $id  ) {
+           $res = Database::query( "SELECT id FROM $tableName WHERE id=$id" );
+           if ( $res->num_rows == 1 ) {
+               self::update( $tableName, $object->getData(), array( 'id' => $id ) );
+               return $object;
+           }
        }
 
-       print_r( $object->getData() );
-
        // Insert as a new object.
-       self::insert( 'users', $object->getData() );
+       self::insert( $tableName, $object->getData() );
 
        // Change the id.
        $connection = self::getConnection();
        $object->setDataVar( 'id', $connection->insert_id );
 
        // Return the object in case that is necessary.
-       return true;
+       return $object;
     }
 }

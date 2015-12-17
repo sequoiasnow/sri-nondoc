@@ -51,7 +51,9 @@
         var url = 'api/';
 
         // Get the parent content type.
-        var contentType = this.parents( '.content-type' ).first().attr( 'data-classname' );
+        var contentType = this.parents( '.content-type' )
+                              .first()
+                              .attr( 'data-classname' );
         url += contentType + '/';
 
         // Check if the current item has an id.
@@ -68,18 +70,68 @@
           .error(function(  xhr ) {
               console.log( xhr.responseText );
           });
-    }
+    };
+
+    /**
+     * Deletes a given instance with an id.
+     *
+     * @param callback done
+     */
+    $.fn.deleteInstance = function( done ) {
+        // Nothing to delete.
+        if ( ! this.attr( 'data-id' ) ) { return ''; }
+
+        var contentType = this.parents( '.content-type' )
+                              .first()
+                              .attr( 'data-classname' );
+
+        var id = this.attr( 'data-id' );
+
+        var url = 'api/' + contentType + '/' + id;
+
+        $.ajax({
+            type: "DELETE",
+            url: url,
+        }).always(function() {
+            done();
+            // getAllInstances();
+        });
+    };
+
+    /**
+     * Returns a button used for the deletion of a node. Meant for the
+     * submission of a form.
+     */
+    $.fn.getDeleteButton = function( done ) {
+        var returnElement = $( '<button class="delete">Delete</button>' );
+
+        var t = this;
+        returnElement.bind( 'click', function() {
+            if ( confirm( 'Are you sure you want to delete this content?' ) ) {
+                t.deleteInstance( done );
+            }
+        });
+
+        return returnElement;
+    };
 })( jQuery );
 
 jQuery(document).ready(function($) {
     function bindAllInstanceForms() {
         $( '#content-types .content-type .instance' ).click(function() {
+            var b = $( this ).getDeleteButton( getAllInstances );
             $( this ).getInstanceForm(function( form ) {
+                // Allow for the deletion of the element.
+                form.find( '.form-field.field-type-submit' ).append( b );
+
+                // Add the form to the container.
                 $( '#content-container' ).html( form );
 
                 // Allow the form to be bound.
                 $( 'form' ).each(function() {
-                    $( this ).customForm();
+                    $( this ).customForm(function() {
+                        getAllInstances();
+                    });
                 });
             });
 

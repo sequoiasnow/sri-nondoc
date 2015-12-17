@@ -37,9 +37,6 @@ abstract class ContentType implements FormPrintable, AjaxRetrievable {
         return self::getFromQuery( "SELECT * FROM $tableName" );
     }
 
-    /// Stores all data, key value pairing exact as in a database.
-    public $data;
-
     /// Stores the title for access by the other properties.
     public $_title;
 
@@ -54,8 +51,6 @@ abstract class ContentType implements FormPrintable, AjaxRetrievable {
             $this->$key = $val;
         }
 
-        $this->data = $data;
-
         $this->_title = $this->getTitle();
     }
 
@@ -68,10 +63,34 @@ abstract class ContentType implements FormPrintable, AjaxRetrievable {
         $data = array();
         foreach ( $this as $key => $val ) {
             if ( strpos( $key, '_' ) !== 0 ) {
-                $array[$key] = $val;
+                $data[$key] = $val;
             }
         }
         return $data;
+    }
+
+    /**
+     * A getter for all data objects.
+     *
+     * @param string $key
+     *
+     * @return mixed
+     */
+    public function getDataVar( $key ) {
+        return $this->$key;
+    }
+
+    /**
+     * A setter for all data objects.
+     *
+     * @param string $key
+     * @param mixed $data
+     *
+     * @return mixed
+     */
+    public function setDataVar( $key, $data ) {
+        $this->$key = $data;
+        return $this->$key;
     }
 }
 

@@ -116,7 +116,7 @@ class API {
 
                 } else {
                     // Add a rendered instance of this object to the array.
-                    $this->objects .= ''. new $this->contentType( $row );
+                    $this->objects .= '' . new $this->contentType( $row );
 
                 }
             }

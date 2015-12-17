@@ -1,5 +1,13 @@
 <?php
 class PasswordField extends Field {
+    public function __construct( $args ) {
+        parent::__construct( $args );
+
+        if ( isset( $this['value'] ) ) {
+            unset( $this['value'] );
+        }
+    }
+
     public function __toString() {
         return "<div class=\"form-field field-type-password\">
             <div class=\"field-name\">

@@ -45,8 +45,23 @@ class Form {
                 $invalids[] = $field->name;
                 continue;
             }
-            // Save the valid data to the field.
-            $args[$fieldMap[$field->name]] = $data[$field->name];
+            // Establish the propery name.
+            $propName = $fieldMap[$field->name];
+
+            // Check if a function exists for the establishment of the prop.
+            if ( method_exists( $contentType, "hookSaveAs__$propName" ) ) {
+                $args[$propName] = call_user_func( array(
+                    $contentType, "hookSaveAs__$propName"
+                ), $data[$field->name] );
+            } else {
+                // Save the valid data to the field.
+                $args[$propName] = $data[$field->name];
+            }
+        }
+
+        // Include the id in args.
+        if ( isset( $data['id'] ) ) {
+            $args['id'] = $data['id'];
         }
 
         if ( count( $invalids ) || count( $emptys ) ) {
@@ -61,7 +76,7 @@ class Form {
             // Save the object to the database.
             Database::save( $object );
 
-            //
+            // Indicate success of venture.
             return array( 'success' => true );
         }
     }

@@ -12,7 +12,7 @@ form .form-field {
 }
 
 /* Style the input */
-form .form-field input {
+form .form-field input, button {
     @include border-radius( 5px );
     border: 1px solid #ccc;
     width: 100%;
@@ -69,13 +69,19 @@ form .form-field.field-type-submit {
     @include display-flex;
     @include justify-content( center );
 
-    input {
+    input, button {
         width: auto;
         padding: 10px 20px;
         border-radius: 8px 0 8px 0;
         background-color: #36C6D3;
         border: none;
         cursor: pointer;
+        margin-left: 30px;
+        margin-right: 30px;
+
+        &.delete {
+            background-color: #E16A72;
+        }
     }
 }
 
