@@ -62,8 +62,8 @@ class AboutPerson extends ContentType {
      * @return string
      */
     public static function getDescription() {
-        return 'The navigation link will be displayed as a component of the
-                sites navigation and allowes the linking of multiple pages.';
+        return 'The about person element will be displayed as a component of the
+                about page and provides the name, image and description of a person.';
     }
 
     /**
@@ -72,7 +72,7 @@ class AboutPerson extends ContentType {
      * @return string
      */
     public static function getName() {
-        return 'Navigation Link';
+        return 'About Person';
     }
 
     /// Variables in a coordance to the database values.
@@ -98,7 +98,7 @@ class AboutPerson extends ContentType {
         // Transform the title to be html outputable.
         $title = htmlentities($this->title );
 
-        return "<div class=\"navigation-link\"
+        return "<div class=\"about-person\"
             <a href=\"{$this->href}\">{$this->title}</a>
         </div>";
     }
