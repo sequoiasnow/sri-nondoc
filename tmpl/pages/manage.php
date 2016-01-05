@@ -10,8 +10,6 @@
 // Allow for the proper css styles to apply.
 $bodyClasses = array( 'manage' );
 
-// Show the title of the page.
-$pageTitle = 'Manage';
 
 // Determine all the classes that will be used as form types.
 $contentTypes = array();

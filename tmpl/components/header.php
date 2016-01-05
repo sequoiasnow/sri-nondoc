@@ -30,6 +30,9 @@ function loadJSFile( $fileName ) {
 // Some initial files...
 loadJSFile( 'form' );
 
+// Establish the current page, and contain information concerning the page
+$pageInformation = PageInformation::getFromPath( PATH );
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,9 +41,7 @@ loadJSFile( 'form' );
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
 
-        <?php if ( isset( $pageTitle ) ) : ?>
-            <title><?php echo $pageTitle; ?></title>
-        <?php endif; ?>
+        <title><?php echo $pageInformation->title; ?></title>
 
         <!-- css -->
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />

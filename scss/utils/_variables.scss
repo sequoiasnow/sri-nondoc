@@ -10,37 +10,37 @@
 /// @prop {Stirng} key - Color Name
 /// @prop {String} value - The color declaration itself
 $colors: (
-  'white': 'rgb(255, 255, 255)',
+  'white': rgb(255, 255, 255),
 
-  'lightgrey': 'rgb(189, 195, 199)',
-  'grey': 'rgb(149, 165, 166)',
-  'darkgrey': 'rgb(127, 140, 141)',
+  'lightgrey': rgb(189, 195, 199),
+  'grey': rgb(149, 165, 166),
+  'darkgrey': rgb(127, 140, 141),
 
-  'lightyellow': 'rgb(241, 196, 15)',
-  'yellow': 'rgb(241, 196, 15)',
-  'darkyellow': 'rgb(241, 196, 15)',
+  'lightyellow': rgb(241, 196, 15),
+  'yellow': rgb(241, 196, 15),
+  'darkyellow': rgb(241, 196, 15),
 
-  'lightorange': 'rgb(243, 156, 18)',
-  'orange': 'rgb(230, 126, 34)',
-  'darkorange': 'rgb(211, 84, 0)',
+  'lightorange': rgb(243, 156, 18),
+  'orange': rgb(230, 126, 34),
+  'darkorange': rgb(211, 84, 0),
 
-  'lightblue': 'rgb(26, 188, 156)',
-  'blue': 'rgb(52, 152, 219)',
-  'darkblue': 'rgb(41, 128, 185)',
+  'lightblue': rgb(26, 188, 156),
+  'blue': rgb(52, 152, 219),
+  'darkblue': rgb(41, 128, 185),
 
-  'lightred': 'rgb(231, 76, 60)',
-  'red': 'rgb(231, 76, 60)',
-  'darkred': 'rgb(192, 57, 43)',
+  'lightred': rgb(231, 76, 60),
+  'red': rgb(231, 76, 60),
+  'darkred': rgb(192, 57, 43),
 
-  'lightpurple': 'rgb(155, 89, 182)',
-  'purple': 'rgb(155, 89, 182)',
-  'darkpurple': 'rgb(142, 68, 173)',
+  'lightpurple': rgb(155, 89, 182),
+  'purple': rgb(155, 89, 182),
+  'darkpurple': rgb(142, 68, 173),
 
-  'lightgreen': 'rgb(46, 204, 113)',
-  'green': 'rgb(39, 174, 96)',
-  'darkgreen': 'rgb(22, 160, 133)',
+  'lightgreen': rgb(46, 204, 113),
+  'green': rgb(39, 174, 96),
+  'darkgreen': rgb(22, 160, 133),
 
-  'black': 'rgb(0, 0, 0)',
+  'black': rgb(0, 0, 0),
 );
 
 /// Define a method for retreiving a color from the colors array.
@@ -52,7 +52,7 @@ $colors: (
 }
 
 /// The color for default text.
-$primary-text-color: 'rgb(0, 0, 0)';
+$primary-text-color: rgb(0, 0, 0);
 
 /// Color for text that stands out amoung the rest.
 $alternate-text-color: color('lightblue');
@@ -113,20 +113,20 @@ $meta-font-size: headingSize('tiny');
 /// url.
 /// @prop {String} value - The font awesome icon equivilant.
 $social-icons: (
-    "facebook" : "\f230",
-    "github"   : "\f092",
-    "tumblr"   : "\f173",
-    "vine"     : "\f1ca",
-    "yelp"     : "\f1e9",
-    "youtube"  : "\f166",
-    "twitter"  : "\f099",
-    "vimeo"    : "\f194",
-    "slack"    : "\f198",
-    "rebel"    : "\f1d0",
-    "pinterest": "\f231",
-    "linkedin" : "\f08c",
-    "google"   : "\f0d4",
-    "instagram": "\f16d"
+  'facebook' : '\f230',
+  'github'   : '\f092',
+  'tumblr'   : '\f173',
+  'vine'     : '\f1ca',
+  'yelp'     : '\f1e9',
+  'youtube'  : '\f166',
+  'twitter'  : '\f099',
+  'vimeo'    : '\f194',
+  'slack'    : '\f198',
+  'rebel'    : '\f1d0',
+  'pinterest': '\f231',
+  'linkedin' : '\f08c',
+  'google'   : '\f0d4',
+  'instagram': '\f16d'
 );
 
 /// An identifier for the body that contains multiple posts.

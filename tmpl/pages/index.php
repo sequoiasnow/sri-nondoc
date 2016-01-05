@@ -6,6 +6,8 @@
  * from the remainder of the site.
  */
 
+// Include a title for the page, this is based off of general site information.
+
 include __DIR__ . '/../components/header.php'; ?>
 
 <h1>Hello world</h1>

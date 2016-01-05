@@ -37,6 +37,19 @@ abstract class ContentType implements FormPrintable, AjaxRetrievable {
         return self::getFromQuery( "SELECT * FROM $tableName" );
     }
 
+    /**
+     * Returns a single instance of the content type, this assumes that only
+     * one such content typi is present. The order, therefore, is of no
+     * consequence.
+     *
+     * @see self::TableName
+     *
+     * @return self
+     */
+    public static function getInstance() {
+        return self::getAllInstances()[0];
+    }
+
     /// Stores the title for access by the other properties.
     public $_title;
 
@@ -102,5 +115,5 @@ include 'AboutPerson.php';
 include 'LocationSite.php';
 include 'NetworkSite.php';
 include 'OutreachElement.php';
-include 'PageTitle.php';
+include 'PageInformation.php';
 include 'TechnologyElement.php';

@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS page_information;
+CREATE TABLE page_information (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    title VARCHAR(50),
+    url VARCHAR(150) NOT NULL,
+    PRIMARY KEY(id)
+);
