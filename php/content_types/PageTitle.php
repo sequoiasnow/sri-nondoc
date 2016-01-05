@@ -64,7 +64,7 @@ class PageTitle extends ContentType {
      * @return string
      */
     public static function getName() {
-        return 'Navigation Link';
+        return 'Page Title';
     }
 
     /// Variables in a coordance to the database values.

@@ -71,7 +71,7 @@ class LocationSite extends ContentType {
      * @return string
      */
     public static function getName() {
-        return 'Navigation Link';
+        return 'Location Site';
     }
 
     /// Variables in a coordance to the database values.

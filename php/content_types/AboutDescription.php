@@ -20,7 +20,7 @@ class AboutDescription extends ContentType {
                 'name'   => 'title',
                 'public' => array(
                     'title'       => 'Title of Element',
-                    'description' => 'The title of the element that will 
+                    'description' => 'The title of the element that will
                                       be presented on the about page',
                 ),
             ) ),
@@ -43,8 +43,8 @@ class AboutDescription extends ContentType {
      */
     public static function getFormFieldMap() {
         return array(
-            'link_name' => 'title',
-            'href'      => 'href',
+            'title'        => 'title',
+            'description'  => 'description',
         );
     }
 
@@ -54,8 +54,7 @@ class AboutDescription extends ContentType {
      * @return string
      */
     public static function getDescription() {
-        return 'The navigation link will be displayed as a component of the
-                sites navigation and allowes the linking of multiple pages.';
+        return '';
     }
 
     /**
@@ -64,7 +63,7 @@ class AboutDescription extends ContentType {
      * @return string
      */
     public static function getName() {
-        return 'Navigation Link';
+        return 'About Description';
     }
 
     /// Variables in a coordance to the database values.

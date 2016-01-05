@@ -72,7 +72,7 @@ class AboutPerson extends ContentType {
      * @return string
      */
     public static function getName() {
-        return 'Navigation Link';
+        return 'About Person';
     }
 
     /// Variables in a coordance to the database values.

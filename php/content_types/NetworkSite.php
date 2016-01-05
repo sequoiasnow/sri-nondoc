@@ -28,7 +28,7 @@ class NetworkSite extends ContentType {
                 'name'   => 'description',
                 'public' => array(
                     'title' => 'Description',
-                    'description' => 'Description of the site or part of 
+                    'description' => 'Description of the site or part of
                                       the network that will be displayed',
                 ),
             ) ),
@@ -64,7 +64,7 @@ class NetworkSite extends ContentType {
      * @return string
      */
     public static function getName() {
-        return 'Navigation Link';
+        return 'Network Site';
     }
 
     /// Variables in a coordance to the database values.

@@ -1,0 +1,72 @@
+/// Allowes response to breakpoints site wide for easier use.
+/// @param {String} $breakpoint - Breakpoint name
+/// @require $breakpoints
+@mixin respond-to($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(type-of($raw-query) == 'string', unquote($raw-query), inspect($raw-query));
+
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`. '
+         + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}
+
+/// Allowes for rem based font sizes. Falls back to px's for older browsers.
+/// @param {Integer | String} $size - The font size in pixels or a key from
+/// heading font sizes.
+/// @require calculateRem
+@mixin font-size($size) {
+  @if unitless($size) {
+    @if map-has-key($heading-font-sizes, $sizes) {
+      $size: headingSize($size);
+    } @else {
+      $size: $size * 1px;
+      @warn 'No size unit provided, px assumed';
+    }
+  }
+
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+/// A convenicance mixin to declare typical content font size and family.
+/// @require font-size
+/// @require $content-font
+/// @require $content-font-size
+@mixin content-font {
+  @include font-size($content-font-size);
+  font-family: $content-font;
+}
+
+/// Creates a filling background for any css image. Also provides a method for
+/// parallax or not nature of the image via the `fixed` property.
+/// @param {String} $image - The image for the background
+/// @param {Bool} $fixed - Wether to enable parallax throught fixed attachment.
+@mixin centered-background($image: false, $fixed: false) {
+  @include background-size(cover);
+
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  @if $fixed {
+    background-attachment: fixed;
+  }
+
+  @if ($image) {
+    background-image: $image;
+  }
+}
+
+/// Responds to multiple posts as identified by wordpress.
+/// @content
+/// @require $multiple-post
+@mixin multiple-posts {
+  #{$multiple-post} & {
+    @content;
+  }
+}

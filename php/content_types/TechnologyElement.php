@@ -64,7 +64,7 @@ class TechnologyElement extends ContentType {
      * @return string
      */
     public static function getName() {
-        return 'Navigation Link';
+        return 'Technology Element';
     }
 
     /// Variables in a coordance to the database values.

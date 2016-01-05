@@ -21,15 +21,19 @@ $loginForm = new Form( array(
                 'title' => 'Password',
             ),
         ) ),
+        new SubmitField( array(
+            'name'  => 'submit',
+            'value' => 'Login',
+        ) ),
     )
-) );
+), false );
 
 
 $bodyClasses = array( 'login' );
 
 include __DIR__ . '/../components/header.php'; ?>
 
-    <div id="form-container">
+    <div id="login-form">
 
         <?php echo $loginForm ?>
 

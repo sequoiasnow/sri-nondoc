@@ -43,6 +43,7 @@ loadJSFile( 'form' );
         <?php endif; ?>
 
         <!-- css -->
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
         <link rel="stylesheet" type="text/css" href="dist/css/main.css" />
     </head>
     <body class="<?php echo implode( $bodyClasses, ' ' ); ?>">

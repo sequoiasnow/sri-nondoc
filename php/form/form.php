@@ -144,6 +144,7 @@ class Form {
             'fields'      => $fields,
             'description' => $desc,
             'action'      => $action,
+            'desc_cont'   => true,
         ) );
     }
 
@@ -208,9 +209,12 @@ class Form {
             $html .= "\n" . $field;
         }
 
-        $html .= '<div class="all-field-description"></div>';
+        if ( isset( $this->desc_cont ) && $this->desc_cont ) {
+            $html .= '<div class="all-field-description"></div>';
+        }
 
         $html .= '</form>';
+
         return $html;
     }
 }
