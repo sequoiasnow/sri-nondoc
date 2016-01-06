@@ -51,8 +51,9 @@ class AboutPerson extends ContentType {
      */
     public static function getFormFieldMap() {
         return array(
-            'link_name' => 'title',
-            'href'      => 'href',
+            'name'        => 'title',
+            'photo'       => 'imagePath',
+            'description' => 'description'
         );
     }
 
@@ -78,8 +79,8 @@ class AboutPerson extends ContentType {
     /// Variables in a coordance to the database values.
     public $id;
     public $title;
-    public $href;
-
+    public $imagePath;
+    public $description;
     /**
      * The name of an instance of the NavigationLink class.
      *

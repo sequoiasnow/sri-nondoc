@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS about_person;
+CREATE TABLE about_description (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    title VARCHAR(50) NOT NULL,
+    imagePath VARCHAR(255) NOT NULL,
+    description VARCHAR(1500) NOT NULL,
+    PRIMARY KEY( id )
+);
