@@ -6,10 +6,35 @@
  * from the remainder of the site.
  */
 
-// Include a title for the page, this is based off of general site information.
-
 include __DIR__ . '/../components/header.php'; ?>
 
-<h1>Hello world</h1>
+    <div id="title-section" class="page-section">
+
+        <h1>Site Title</h1>
+
+        <p>A very, very, brief site slogan</p>
+
+    </div> <!-- #title-section -->
+
+    <div id="title-overlay" class="page-section"></div>
+
+    <nav id="primary-navigation">
+
+        <a href="contact">Contact</a>
+
+        <a href="equipment">Equipment</a>
+
+        <a href="network">Netwok</a>
+
+        <a href="technology">Technology</a>
+
+    </nav> <!-- #primary-navigation -->
+
+    <div id="about" class="page-section">
+
+        
+
+    </div> <!-- #about -->
+
 
 <?php include __DIR__ . '/../components/footer.php'; ?>

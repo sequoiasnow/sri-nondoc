@@ -79,7 +79,7 @@ class PageInformation extends ContentType {
     public static function getFromPath( $path ) {
         // Establish some info for the query.
         $path      = Database::escapeString( $path );
-        $tableName = self::tableName;
+        $tableName = self::TableName;
 
         $res = Database::query( "SELECT * FROM $tableName WHERE url='$path'" );
         if ( $res->num_rows ) {

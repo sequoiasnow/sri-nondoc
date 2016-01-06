@@ -1,8 +1,0 @@
-/// Allowes for the centering in the vertical direction using css flexbox.
-/// As this uses flexbox, it only works for one child, if multiple children
-/// are present they will be mixed together.
-%center-vertical {
-  @include display-flex;
-  @include flex-direction( column );
-  @include justify-content( center );
-}

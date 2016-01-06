@@ -20,9 +20,10 @@
 /// @param {Integer | String} $size - The font size in pixels or a key from
 /// heading font sizes.
 /// @require calculateRem
+/// @require $heading-font-sizes
 @mixin font-size($size) {
-  @if unitless($size) {
-    @if map-has-key($heading-font-sizes, $sizes) {
+  @if type-of($size) == 'string' {
+    @if map-has-key($heading-font-sizes, $size) {
       $size: headingSize($size);
     } @else {
       $size: $size * 1px;

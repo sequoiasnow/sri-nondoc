@@ -1,0 +1,51 @@
+/**
+ * The main navigation for the site. Positioned fixed at top of site.
+ * 1. Links are aligned to the center.
+ * 2. Make relative for inital state.
+ */
+#primary-navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  text-align: center; /* 1 */
+  padding: 5px;
+
+  &.is-relative {
+    position: relative;
+  }
+}
+
+
+/**
+ * All links are removed from stanard styles and instead portrayed as small
+ * headings.
+ *
+ * A before element is used to create a divide between the links.
+ */
+#primary-navigation a {
+  @include font-size('small');
+  font-weight: bold;
+  text-decoration: none;
+  color: $text-color;
+  display: inline-block;
+  position: relative;
+  margin: 3px 10px;
+
+
+  &:nth-child(n+2)::before {
+    @include transform(rotate(10deg));
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -11px;
+    display: block;
+    height: 100%;
+    border-right: 2px solid $alternate-text-color;
+  }
+
+  &.is-selected {
+    color: #ccc;
+  }
+}
