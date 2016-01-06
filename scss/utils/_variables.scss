@@ -55,7 +55,7 @@ $colors: (
 $text-color: rgb(0, 0, 0);
 
 /// Color for text that stands out amoung the rest.
-$alternate-text-color: color('lightblue');
+$alternate-text-color: rgb(94, 192, 239);
 
 /// Color for text light text on a dark background.
 $light-text-color: color('white');
@@ -86,27 +86,25 @@ $breakpoints: (
 );
 
 /// The standard font used for typical content.
-$content-font: ('PT Serif', serif);
+$content-font: ('EB Garamond', serif);
 
 /// The standard font for all headings .
-$heading-font: ('Montserrat', sans-serif);
+$heading-font: ('Cousine', 'Montserrat', sans-serif);
 
 /// Fonts for alternate circumstances, like blockquotes or other headins.
 $alternate-font: (Georgia, serif);
 
 /// Font size for site content.
-$content-font-size: 14px;
+$content-font-size: 20px;
 
 /// Font sizes for headings.
 $heading-font-sizes: (
-  'tiny': 12px,
-  'small': 16px,
-  'large': 24px,
-  'huge': 34px,
+  'tiny': 14px,
+  'small': 20px,
+  'large': 26px,
+  'huge': 38px,
 );
 
-/// Font sizes for entry meta, all things insignificant and small.
-$meta-font-size: headingSize('tiny');
 
 /// The icons that will replace the names of links in the menu of social links.
 /// @prop {String} key - The lowercase name of the company as appears in the

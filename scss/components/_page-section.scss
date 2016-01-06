@@ -1,15 +1,102 @@
 /**
  * A section of the page, typically with a background to offset from the
- * text color. This is part of the drasitic color scheme implemented site
- * wide.
+ * text color.
  */
 .page-section {
   width: 100%;
   margin: 0;
   clear: both;
+  display: inline-block;
 }
 
 /**
- * Implement the color changes for the evens, these are by default
- * ...
+ * The font for the page section is the more casual text used
+ * font, this, combined with the centrally aligned content gives
+ * smaller than otherwise content size. Also has padding to allow for mobile
+ * conversion of use.
  */
+.page-section *[class*="content"] {
+  font-family: $content-font;
+  text-align: center;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+}
+
+/*
+ *
+ * The page section is also automatically centered and set to a maximum
+ * width of 680px which is determined the largest distnace that can
+ * comfortably be read without line overflow.
+ */
+.page-section .content {
+  max-width: 680px;
+}
+
+/**
+ * Similiair to the content container, the large content container is 960px
+ * wide and allowes for the display of larger contnet, while still adjusting
+ * for wide screen displays.
+ */
+.page-section .content-large {
+  max-width: 960px;
+}
+
+/**
+ * Similar ot the content ocntianer, this massive content container is 1150px
+ * wide to allow for sideways lists, and will barley fit on 13" screens.
+ */
+.page-section .content-extra-large {
+  max-width: 1150px;
+}
+
+/**
+ * Paragraphs of content are formated to larger font size (~14px). To increase
+ * readability the line height is set to 1.4x the font size. THis allowes for
+ * clearer visualtization of the text.
+ *
+ * 1. Ensrue the end of content has similiar padding to the entry.
+ */
+.page-section p {
+  font-size: $content-font-size;
+  line-height: $content-font-size * 1.4;
+
+  &:last-child {
+    padding-bottom: 20px; /* 1 */
+  }
+}
+
+/**
+ * Styles some tags that describe information concerning information. These
+ * serve as a small summary of a paragraph and are meant to stand out.
+ *
+ * To accomplish this they are transformed to use heading style fonts and to
+ * be centered.
+ *
+ * This sectioon is also centered
+ */
+.page-section .tags {
+  @include font-size(16px);
+  @include display-flex;
+  @include flex-flow(row wrap);
+  @include justify-content(center);
+  font-family: $heading-font;
+  text-align: center;
+  margin: 5px auto;
+}
+
+/**
+ * Alter margin to allow for space between tags, with a small transition for
+ * an effect.
+ */
+.page-section .tags {
+  @include transition(all 0.4s);
+  padding: 0 10px;
+  color: color('grey');
+  display: inline-block;
+
+  &:hover {
+    padding: 0 20px;
+  }
+}

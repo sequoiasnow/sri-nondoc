@@ -1,0 +1,100 @@
+/**
+ * Center content as it is the singular item in the section.
+ *
+ * Give the title section the characteristic black background, light
+ * text using simple background color alterations.
+ *
+ * The title section is fixed to allow for content scrolled on top.
+ *
+ * Their is also a z index put in place that allowes content flowing over.
+ */
+#title-section {
+  @extend %center-vertical;
+  background-color: rgb(4, 4, 4);
+  color: $light-text-color;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+}
+
+/**
+ * Make the site title exceptionally large.
+ */
+#title-section h1 {
+  font-size: 100px;
+}
+
+/**
+ * Italisize site slogan, this may not be possible with certain fonts.
+ */
+#title-section p.slogan {
+  font-style: italic;
+}
+
+/**
+ * Give the description destinction and sperationg from site title and
+ * slogan.
+ */
+#title-section p.description {
+  margin-top: 100px;
+  font-size: $content-font-size * 0.94;
+}
+
+/**
+ * Give an overlay from the title to allow for scrolling past the fixed
+ * positioned marker.
+ */
+#title-overlay {
+  height: 150vh;
+  background-color: transparent;
+}
+
+/**
+ * Change the background of the about section to be visible over the
+ * origional pannel.
+ */
+#about {
+  background-color: color('white');
+}
+
+/**
+ * Give the product groups a unigue background.
+ */
+#product-groups {
+  background-color: color('red');
+}
+
+/**
+ * Allow for a fluid layout of containers that are the product groups. This is
+ * accomplished with css flexbox and can not be done without it.
+ */
+#product-groups .group-container {
+  @include display-flex;
+  @include flex-flow(row wrap);
+}
+
+/**
+ * Style the group to reflect their icon and names in a coherant style.
+ *
+ * 1. Set an acceptable size, 300px in this case.
+ * 2. Ensure the text nad contetns are displayed properly.
+ * 3. Add padding to distinguish between items
+ */
+#product-groups .group-container .group {
+  width: 300px; /* 1 */
+  height: 300px; /* 1 */
+  text-align: center; /* 2 */
+  padding: 5px; /* 3 */
+}
+
+/**
+ * Show the icon as a proper size to represent its content group
+ */
+#product-groups .group-container .icon-container {
+  font-size: 80px;
+}

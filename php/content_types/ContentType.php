@@ -105,6 +105,15 @@ abstract class ContentType implements FormPrintable, AjaxRetrievable {
         $this->$key = $data;
         return $this->$key;
     }
+
+    /**
+     * A basic toString method that can be overriden.
+     *
+     * @return string
+     */
+    public function __toString() {
+        return $this->getTitle();
+    }
 }
 
 

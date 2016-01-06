@@ -1,6 +1,36 @@
+/**
+ * Allow for complete page experience and make content font a default sitewide.
+ *
+ * 1. Use flexbox to maintian consistnacy.
+ */
 body, html {
+    @include display-flex; /* 1 */
+    @include flex-direction(column); /* 1 */
     margin: 0;
     padding: 0;
+    font-family: $content-font;
+}
 
-    font-family: avenir, serif;
+/**
+ * Make largest of headings.
+ */
+h1 {
+  font-size: 80px;
+  margin: 20px auto;
+}
+
+/**
+ * Make still large heading.
+ */
+h2 {
+  font-size: 54px;
+  margin: 14px auto;
+}
+
+/**
+ * Make reasonable heading
+ */
+h3 {
+  font-size: 34px;
+  margin: 8px auto;
 }

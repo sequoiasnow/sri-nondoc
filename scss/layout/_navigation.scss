@@ -1,19 +1,22 @@
 /**
  * The main navigation for the site. Positioned fixed at top of site.
+ * 0. Give the navigation bar some perspective;
  * 1. Links are aligned to the center.
  * 2. Make relative for inital state.
  */
 #primary-navigation {
+  z-index: 100; /* 0 */
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
   text-align: center; /* 1 */
-  padding: 5px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
 
   &.is-relative {
-    position: relative;
+    position: relative; /* 2 */
   }
 }
 
@@ -22,20 +25,33 @@
  * All links are removed from stanard styles and instead portrayed as small
  * headings.
  *
+ * The font is also changed to be more readable against the dark background,
+ * and to be distinctly sperate from other content on the site. This is done
+ * through uppercasing, lightening and enlarging the font.
+ *
+ * On hover the link is more prominintly displayed by use of increased margins
+ * and a ::after pseudo element. This uses a 0.4 second transition.
+ *
  * A before element is used to create a divide between the links.
+ *
+ * An after element is used to create a transitional border below the
+ * element. This is the same element that is used by the is-selected
+ * class.
  */
 #primary-navigation a {
-  @include font-size('small');
-  font-weight: bold;
+  @include transition(all 0.4s);
+  @include font-size(16px);
+  font-family: $heading-font;
   text-decoration: none;
-  color: $text-color;
+  color: $light-text-color;
+  text-transform: uppercase;
   display: inline-block;
   position: relative;
   margin: 3px 10px;
 
-
   &:nth-child(n+2)::before {
     @include transform(rotate(10deg));
+    @include transition(all 0.4s);
     content: '';
     position: absolute;
     top: 0;
@@ -45,7 +61,31 @@
     border-right: 2px solid $alternate-text-color;
   }
 
+  &::after {
+    @include transition(all 0.4s);
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    height: 1px;
+    width: 0;
+    left: 50%;
+    background-color: $alternate-text-color;
+  }
+
   &.is-selected {
     color: #ccc;
+  }
+
+  &:hover {
+    margin: 3px 20px;
+  }
+
+  &:hover::before {
+    left: -21px;
+  }
+
+  &:hover::after, &.is-selected::after {
+    width: 100%;
+    left: 0;
   }
 }

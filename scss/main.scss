@@ -11,11 +11,13 @@
   'base/typography';
 
 @import
-  'components/form';
+  'components/form',
+  'components/page-section';
 
 @import
   'layout/navigation';
 
 @import
   'pages/login',
-  'pages/manage';
+  'pages/manage',
+  'pages/main';

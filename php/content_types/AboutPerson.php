@@ -7,7 +7,7 @@
  */
 class AboutPerson extends ContentType {
     /// The table name specified for this content type
-    const TableName = 'about_person';
+    const TableName = 'about_persons';
 
     /**
      * Return all the fields relevant to the form.
@@ -51,8 +51,9 @@ class AboutPerson extends ContentType {
      */
     public static function getFormFieldMap() {
         return array(
-            'link_name' => 'title',
-            'href'      => 'href',
+            'name'        => 'name',
+            'photo'       => 'imagePath',
+            'description' => 'description',
         );
     }
 
@@ -77,8 +78,9 @@ class AboutPerson extends ContentType {
 
     /// Variables in a coordance to the database values.
     public $id;
-    public $title;
-    public $href;
+    public $name;
+    public $imagePath;
+    public $description;
 
     /**
      * The name of an instance of the NavigationLink class.
@@ -86,20 +88,6 @@ class AboutPerson extends ContentType {
      * @return string
      */
     public function getTitle() {
-        return $this->title;
-    }
-
-    /**
-     * Print a navigation link in a cohesive fashion.
-     *
-     * @return string
-     */
-    public function __toString() {
-        // Transform the title to be html outputable.
-        $title = htmlentities($this->title );
-
-        return "<div class=\"about-person\"
-            <a href=\"{$this->href}\">{$this->title}</a>
-        </div>";
+        return $this->name;
     }
 }
