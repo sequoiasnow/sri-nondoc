@@ -5,9 +5,9 @@
  *
  * @see init/mysql/NavigationLink.mysql
  */
-class ProductGroup extends ContentType {
+class PageDescription extends ContentType {
     /// The table name specified for this content type
-    const TableName = 'product_group';
+    const TableName = 'page_description';
 
     /**
      * Return all the fields relevant to the form.
@@ -20,24 +20,24 @@ class ProductGroup extends ContentType {
                 'name'   => 'name',
                 'public' => array(
                     'title'       => 'Product Group',
-                    'description' => 'The name of the product group that the
-                                      element will describe',
+                    'description' => 'The name of the page that the
+                                      element will describe and be displayed on',
                 ),
             ) ),
             new TextField( array(
                 'name'   => 'blurb',
                 'public' => array(
                     'title' => 'Small Blurb of Group',
-                    'description' => 'Short blurb that can be displayed about
-                                      the product group',
+                    'description' => 'Short blurb about the page that can be
+                                      displayed on another page',
                 ),
             ) ),
             new TextField( array(
                 'name'   => 'description',
                 'public' => array(
                     'title' => 'Description',
-                    'description' => 'General description of the product group
-                                      and other details',
+                    'description' => 'General description of the page
+                                      and other relevant details',
                 ),
             ) ),
         );
@@ -63,9 +63,9 @@ class ProductGroup extends ContentType {
      * @return string
      */
     public static function getDescription() {
-        return 'The product group will be displayed as a component of the
-                splash page and gives a small description of one of the
-                equipment sections that is distributed in ARSLS.';
+        return 'The page description will be displayed with the blurb on the
+                splash page and gives a large description of one of the
+                other relevant pages that are part of the site.';
     }
 
     /**
@@ -74,7 +74,7 @@ class ProductGroup extends ContentType {
      * @return string
      */
     public static function getName() {
-        return 'Product Group';
+        return 'Page Description';
     }
 
     /// Variables in a coordance to the database values.
