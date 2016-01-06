@@ -43,8 +43,8 @@ class OutreachElement extends ContentType {
      */
     public static function getFormFieldMap() {
         return array(
-            'link_name' => 'title',
-            'href'      => 'href',
+            'name'            => 'title',
+            'description'     => 'description',
         );
     }
 
@@ -54,8 +54,9 @@ class OutreachElement extends ContentType {
      * @return string
      */
     public static function getDescription() {
-        return 'The navigation link will be displayed as a component of the
-                sites navigation and allowes the linking of multiple pages.';
+        return 'The outreach element will be displayed as a component of the
+                outreach section and provides information about projects that
+                are associated with outside groups.';
     }
 
     /**
@@ -70,7 +71,7 @@ class OutreachElement extends ContentType {
     /// Variables in a coordance to the database values.
     public $id;
     public $title;
-    public $href;
+    public $description;
 
     /**
      * The name of an instance of the NavigationLink class.

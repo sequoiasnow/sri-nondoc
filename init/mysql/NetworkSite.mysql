@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS network_site;
-CREATE TABLE about_description (
+CREATE TABLE network_site (
     id INT(11) NOT NULL AUTO_INCREMENT,
     title VARCHAR(50) NOT NULL,
     description VARCHAR(1500) NOT NULL,

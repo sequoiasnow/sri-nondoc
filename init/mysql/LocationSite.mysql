@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS location_site;
-CREATE TABLE about_description (
+CREATE TABLE location_site (
     id INT(11) NOT NULL AUTO_INCREMENT,
     title VARCHAR(50) NOT NULL,
     coordinates VARCHAR(100) NOT NULL,
