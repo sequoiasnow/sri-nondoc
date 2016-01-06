@@ -54,7 +54,8 @@ class AboutDescription extends ContentType {
      * @return string
      */
     public static function getDescription() {
-        return '';
+        return 'The about description element will be displayed as a component of the
+                about page and provides the name and descrpition of part of ARSLS.';
     }
 
     /**
@@ -89,7 +90,7 @@ class AboutDescription extends ContentType {
         // Transform the title to be html outputable.
         $title = htmlentities($this->title );
 
-        return "<div class=\"navigation-link\"
+        return "<div class=\"about-description\"
             <a href=\"{$this->href}\">{$this->title}</a>
         </div>";
     }

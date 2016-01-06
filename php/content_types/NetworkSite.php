@@ -54,7 +54,7 @@ class NetworkSite extends ContentType {
      * @return string
      */
     public static function getDescription() {
-        return 'The navigation link will be displayed as a component of the
+        return 'The network site will be displayed as a component of the
                 sites navigation and allowes the linking of multiple pages.';
     }
 
@@ -90,7 +90,7 @@ class NetworkSite extends ContentType {
         // Transform the title to be html outputable.
         $title = htmlentities($this->title );
 
-        return "<div class=\"navigation-link\"
+        return "<div class=\"network-site\"
             <a href=\"{$this->href}\">{$this->title}</a>
         </div>";
     }
