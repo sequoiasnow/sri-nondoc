@@ -34,3 +34,11 @@ h3 {
   font-size: 34px;
   margin: 8px auto;
 }
+
+/**
+ * Restyle hyperlinks
+ */
+a {
+  color: inherit;
+  text-decoration: underline;
+}

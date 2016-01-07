@@ -66,35 +66,185 @@
  * Give the product groups a unigue background.
  */
 #product-groups {
-  background-color: color('red');
+  background-color: rgb(40, 40, 46);
+  color: color('white');
 }
 
 /**
  * Allow for a fluid layout of containers that are the product groups. This is
  * accomplished with css flexbox and can not be done without it.
+ *
+ * 1. Ensure that all cards a are forward of the background to allow flip.
+ * 2. Give an acceptable margin downwards for the group container.
  */
 #product-groups .group-container {
-  @include display-flex;
-  @include flex-flow(row wrap);
+  @include transform(translateZ(1px)); /* 1 */
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 /**
  * Style the group to reflect their icon and names in a coherant style.
  *
+ * 0. Make the group a card.
  * 1. Set an acceptable size, 300px in this case.
- * 2. Ensure the text nad contetns are displayed properly.
- * 3. Add padding to distinguish between items
+ * 2. Allow for a gap betwen groups
+ * 3. Allow for padding to be useful for children.
  */
 #product-groups .group-container .group {
-  width: 300px; /* 1 */
-  height: 300px; /* 1 */
-  text-align: center; /* 2 */
-  padding: 5px; /* 3 */
+  @extend %card; /* 0 */
+
+  display: inline-block;
+  width: 250px; /* 1 */
+  height: 250px; /* 1 */
+  margin: 3px; /* 3 */
+
+  * {
+    @include box-sizing(border-box); /* 3 */
+  }
 }
 
 /**
  * Show the icon as a proper size to represent its content group
  */
 #product-groups .group-container .icon-container {
-  font-size: 80px;
+  font-size: 65px;
+}
+
+/**
+ * Show the proper product group name size.
+ */
+#product-groups .group-container .name {
+  margin: 5px auto;
+}
+
+/**
+ * Style the front of the card that will be shown.
+ *
+ * Also center content verically in container using a flexbox technigue.
+ */
+#product-groups .group-container .front {
+  @extend %center-vertical;
+
+  background-color: rgb(55, 55, 63);
+  padding: 15px;
+  text-align: center;
+}
+
+/**
+ *  Style the back of the card that will be shown
+ */
+#product-groups .group-container .back {
+  color: color('white');
+  background-color: $alternate-text-color;
+}
+
+/**
+ * Style the documentation link.
+ */
+.doc-link {
+  @include transition(all 0.4s);
+  @include font-size(16px);
+  font-family: $heading-font;
+  border: 2px solid color('white');
+  text-decoration: none;
+  color: color('white');
+  text-align: center;
+  padding: 4px;
+
+  &:hover {
+    padding: 10px;
+  }
+}
+
+/**
+ * Style the network section and background.
+ *
+ * Also allow for additional space at the bottom of the container.
+ */
+#network {
+  background-color: color('white');
+  padding-bottom: 20px;
+}
+
+/**
+ * Allow for a grid system via a flexbox container wrapping the two columns of
+ * content.
+ */
+#network .content-extra-large {
+  @include display-flex;
+  @include flex-flow(row);
+  @include justify-content(center);
+}
+
+/**
+ * Send the column sizes with responsive tendancies in mind.
+ */
+#network .col {
+  @include flex(0 1 50%);
+
+  @include respond-to('medium') {
+    @include flex(0 1 100%);
+  }
+}
+
+/**
+ * Style the documentation lin withing the network info.
+ */
+#network .network-info .doc-link {
+  margin: 20px auto;
+  color: $alternate-text-color;
+  border-color: $alternate-text-color;
+}
+
+/**
+ * Style the graph found next to the documentation link.
+ */
+#network-graph {
+  position: relative;
+  height: 400px;
+  width: 400px;
+  margin: 0;
+  font-family: $heading-font;
+}
+
+/**
+ * Ensure network graph overlays still work, by making them the same color as
+ * the backgorund of the network section.
+ */
+#network-graph .overlay {
+  background-color: color('white');
+}
+
+/**
+ * Allow padding for those elements proceeding and following the network graph.
+ */
+#product-groups {
+  padding-bottom: 100px;
+}
+
+/**
+ * Give basic styling and padding to the outreach information.
+ */
+#outreach {
+  padding-top: 100px;
+  background-color: rgb(40, 40, 46);
+  color: color('white');
+}
+
+/**
+ * Move the outreach list elements to the center, beyond text alignment.
+ */
+#outreach .outreach-list {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+/**
+ * Center the list elemtn text.
+ */
+#outreach a {
+  margin: 6px 2px;
+  text-decoration: none;
 }

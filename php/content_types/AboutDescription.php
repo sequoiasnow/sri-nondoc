@@ -54,8 +54,9 @@ class AboutDescription extends ContentType {
      * @return string
      */
     public static function getDescription() {
-        return 'The about description element will be displayed as a component of the
-                about page and provides the name and descrpition of part of ARSLS.';
+        return 'The about description element will be displayed as a component
+                of the about page and provides the name and descrpition of
+                part of ARSLS.';
     }
 
     /**
@@ -70,7 +71,7 @@ class AboutDescription extends ContentType {
     /// Variables in a coordance to the database values.
     public $id;
     public $title;
-    public $href;
+    public $description;
 
     /**
      * The name of an instance of the NavigationLink class.

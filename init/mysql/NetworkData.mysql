@@ -1,0 +1,47 @@
+DROP TABLE IF EXISTS networl_data;
+CREATE TABLE network_data (
+    id INT(3) NOT NULL AUTO_INCREMENT,
+    data TEXT NOT NULL,
+    PRIMARY KEY(id)
+);
+
+-- Initial value inserted
+INSERT INTO network_data (data) VALUES ('[
+    {
+        "title": "Iridium",
+        "value": 2
+    },
+    {
+        "title": "Dial up",
+        "value": 56
+    },
+    {
+        "title": "OpenPort",
+        "value": 128
+    },
+    {
+        "title": "BGAN",
+        "value": 492
+    },
+    {
+        "title": "VSAT",
+        "value": 1024
+    },
+    {
+        "title": "HughesNet",
+        "value": 1024
+    },
+    {
+        "title": "ADSL",
+        "value": 8000
+    },
+    {
+        "title": "Wireless",
+        "value": 54000
+    },
+    {
+        "title": "Ethernet",
+        "value": 100000
+    }
+]
+');

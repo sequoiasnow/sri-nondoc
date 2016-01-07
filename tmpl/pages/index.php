@@ -6,7 +6,15 @@
  * from the remainder of the site.
  */
 
-include __DIR__ . '/../components/header.php'; ?>
+// Establish infomraiton about the network chart.
+$networkChartData = NetworkData::getInstance();
+
+include __DIR__ . '/../components/header.php';
+
+// Add the neccessary javascript.
+loadJSFile('network');
+
+?>
     <nav id="primary-navigation">
 
         <a href="contact">Contact</a>
@@ -75,59 +83,87 @@ include __DIR__ . '/../components/header.php'; ?>
         <section class="group-container content-extra-large">
 
             <article class="group">
-                <div class="icon-container">
-                    <span class="fa fa-phone"></span>
-                </div>
 
-                <div class="name">
-                    <p>Satelite Phones</p>
-                </div>
+                <div class="front">
+                    <div class="icon-container">
+                        <span class="fa fa-phone"></span>
+                    </div>
 
-                <div class="description">
-                    <p>The phones available to Arctic researchers provide global reliable voice using a variety of satellite-based services.</p>
-                </div>
+                    <div class="name">
+                        <p>Satelite Phones</p>
+                    </div>
+                </div> <!-- .front -->
+
+                <div class="back">
+                    <div class="description">
+                        <p>The phones available to Arctic researchers provide global reliable voice using a variety of satellite-based services.</p>
+                    </div>
+
+                    <a class="doc-link" href="">Documentation</a>
+                </div> <!-- .back -->
             </article> <!-- .group -->
 
             <article class="group">
-                <div class="icon-container">
-                    <span class="fa fa-life-ring"></span>
-                </div>
 
-                <div class="name">
-                    <p>Safety Equipment</p>
-                </div>
+                <div class="front">
+                    <div class="icon-container">
+                        <span class="fa fa-phone"></span>
+                    </div>
 
-                <div class="description">
-                    <p>SRI provides two location devices for fielding and support to researchers while in the field.</p>
-                </div>
+                    <div class="name">
+                        <p>Satelite Phones</p>
+                    </div>
+                </div> <!-- .front -->
+
+                <div class="back">
+                    <div class="description">
+                        <p>The phones available to Arctic researchers provide global reliable voice using a variety of satellite-based services.</p>
+                    </div>
+
+                    <a class="doc-link" href="">Documentation</a>
+                </div> <!-- .back -->
             </article> <!-- .group -->
 
             <article class="group">
-                <div class="icon-container">
-                    <span class="fa fa-power-off"></span>
-                </div>
 
-                <div class="name">
-                    <p>Power Equipment</p>
-                </div>
+                <div class="front">
+                    <div class="icon-container">
+                        <span class="fa fa-phone"></span>
+                    </div>
 
-                <div class="description">
-                    <p>Several technologies are available for remote power systems in arctic environments</p>
-                </div>
+                    <div class="name">
+                        <p>Satelite Phones</p>
+                    </div>
+                </div> <!-- .front -->
+
+                <div class="back">
+                    <div class="description">
+                        <p>The phones available to Arctic researchers provide global reliable voice using a variety of satellite-based services.</p>
+                    </div>
+
+                    <a class="doc-link" href="">Documentation</a>
+                </div> <!-- .back -->
             </article> <!-- .group -->
 
             <article class="group">
-                <div class="icon-container">
-                    <span class="fa fa-wifi"></span>
-                </div>
 
-                <div class="name">
-                    <p>Radios</p>
-                </div>
+                <div class="front">
+                    <div class="icon-container">
+                        <span class="fa fa-phone"></span>
+                    </div>
 
-                <div class="description">
-                    <p>The radios available to Arctic researchers provide ground and air communication services.</p>
-                </div>
+                    <div class="name">
+                        <p>Satelite Phones</p>
+                    </div>
+                </div> <!-- .front -->
+
+                <div class="back">
+                    <div class="description">
+                        <p>The phones available to Arctic researchers provide global reliable voice using a variety of satellite-based services.</p>
+                    </div>
+
+                    <a class="doc-link" href="">Documentation</a>
+                </div> <!-- .back -->
             </article> <!-- .group -->
 
 
@@ -135,5 +171,66 @@ include __DIR__ . '/../components/header.php'; ?>
 
     </div> <!-- #about -->
 
+    <div id="network" class="page-section">
+
+        <section class="content-extra-large">
+
+            <section class="graph-container col">
+
+                <div id="network-graph" chart-data='<?php print $networkChartData; ?>'></div>
+
+            </section>
+
+            <section class="network-info col">
+
+                <h1>Network.</h1>
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula
+                </p>
+
+
+                <a class="doc-link" href="">
+                    Documentation
+                </a>
+
+            <seciton>
+
+
+        </section>
+
+    </div>
+
+    <div id="outreach" class="page-section">
+
+        <div class="content">
+
+            <h1>Who do we work with?</h1>
+
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+            </p>
+
+        </div>
+
+        <div class="content">
+
+            <div class="outreach-list">
+
+                <ul>
+
+                    <li><a href="">Polar Power</a></li>
+                    <li><a href="">Polar Power</a></li>
+                    <li><a href="">Polar Power</a></li>
+                    <li><a href="">Polar Power</a></li>
+                    <li><a href="">Polar Power</a></li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div> <!-- .page-section -->
 
 <?php include __DIR__ . '/../components/footer.php'; ?>

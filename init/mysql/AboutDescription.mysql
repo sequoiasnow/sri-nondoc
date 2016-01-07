@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS about_description;
+CREATE TABLE about_description (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    title VARCHAR(50) NOT NULL,
+    description VARCHAR(1500) NOT NULL,
+    PRIMARY KEY( id )
+);

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 DROP TABLE IF EXISTS about_persons;
 CREATE TABLE about_persons (
     id INT(11) NOT NULL AUTO_INCREMENT,
@@ -5,4 +6,13 @@ CREATE TABLE about_persons (
     imagePath VARCHAR(255),
     description VARCHAR(1500),
     PRIMARY KEY(id)
+=======
+DROP TABLE IF EXISTS about_person;
+CREATE TABLE about_person (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    title VARCHAR(50) NOT NULL,
+    imagePath VARCHAR(255) NOT NULL,
+    description VARCHAR(1500) NOT NULL,
+    PRIMARY KEY( id )
+>>>>>>> 5914b004980bd1cb3ea25617e5c6227c105a248b
 );

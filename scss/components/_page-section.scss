@@ -90,7 +90,7 @@
  * Alter margin to allow for space between tags, with a small transition for
  * an effect.
  */
-.page-section .tags {
+.page-section .tags .tag {
   @include transition(all 0.4s);
   padding: 0 10px;
   color: color('grey');

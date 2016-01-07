@@ -5,6 +5,7 @@
  * 2. Make relative for inital state.
  */
 #primary-navigation {
+  @include transform(translateZ(20px));
   z-index: 100; /* 0 */
   position: fixed;
   top: 0;

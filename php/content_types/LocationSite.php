@@ -50,8 +50,9 @@ class LocationSite extends ContentType {
      */
     public static function getFormFieldMap() {
         return array(
-            'link_name' => 'title',
-            'href'      => 'href',
+            'name'              => 'title',
+            'coordinates'       => 'coordinates',
+            'description'       => 'description'
         );
     }
 
@@ -78,7 +79,8 @@ class LocationSite extends ContentType {
     /// Variables in a coordance to the database values.
     public $id;
     public $title;
-    public $href;
+    public $coordinates;
+    public $description;
 
     /**
      * The name of an instance of the NavigationLink class.

@@ -51,9 +51,9 @@ class AboutPerson extends ContentType {
      */
     public static function getFormFieldMap() {
         return array(
-            'name'        => 'name',
+            'name'        => 'title',
             'photo'       => 'imagePath',
-            'description' => 'description',
+            'description' => 'description'
         );
     }
 

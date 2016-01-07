@@ -1,0 +1,54 @@
+/**
+ * Define functionality for a card with information contained on the back.
+ *
+ * Each card contains a front and a back, each side with various content.
+ * On hover the card is rotated, though this could be configured to be the
+ * result of javascript using a class.
+ *
+ * Below is shown the implementation of the basic configuration of the card
+ * to allow transformation.
+ */
+%card {
+  @include transform-style(preserve-3d);
+  @include transition(transform 0.5s);
+  position: relative;
+
+  &:hover {
+    @include transform(rotateY(180deg));
+  }
+}
+
+/**
+ * Set up a backside of the card that allowes for the transitioning flip.
+ */
+%card .back {
+  @include transform(rotateY(180deg));
+}
+
+/**
+ * Configure a front side of the card (displayed by default) that will be shown.
+ *
+ * The z index configuration provides minor improvements in configuratio.
+ */
+%card .front {
+
+}
+
+/**
+ * Position and configure both the back and front sides of the card for
+ * consistant use.
+ */
+%card .front, %card .back {
+  @include backface-visibility(hidden);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.card {
+  @extend %card;
+}

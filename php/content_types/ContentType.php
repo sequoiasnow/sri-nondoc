@@ -9,7 +9,7 @@ abstract class ContentType implements FormPrintable, AjaxRetrievable {
      *
      * @param string $query
      *
-     * @return [self]
+     * @return [static]
      */
     public static function getFromQuery( $query ) {
         // Query the database for the result.
@@ -18,7 +18,7 @@ abstract class ContentType implements FormPrintable, AjaxRetrievable {
         // Loop through the result transforming each value into a class.
         $return = array();
         while ( $row = $result->fetch_assoc() ) {
-            $return[] = new self( $row );
+            $return[] = new static( $row );
         }
         $result->close();
 
@@ -28,13 +28,13 @@ abstract class ContentType implements FormPrintable, AjaxRetrievable {
     /**
      * Return all instances of a content type from the database.
      *
-     * @see self::TableName
+     * @see static::TableName
      *
-     * @return [self]
+     * @return [static]
      */
     public static function getAllInstances() {
-        $tableName = self::TableName;
-        return self::getFromQuery( "SELECT * FROM $tableName" );
+        $tableName = static::TableName;
+        return static::getFromQuery( "SELECT * FROM $tableName" );
     }
 
     /**
@@ -42,12 +42,12 @@ abstract class ContentType implements FormPrintable, AjaxRetrievable {
      * one such content typi is present. The order, therefore, is of no
      * consequence.
      *
-     * @see self::TableName
+     * @see static::TableName
      *
-     * @return self
+     * @return static
      */
     public static function getInstance() {
-        return self::getAllInstances()[0];
+        return static::getAllInstances()[0];
     }
 
     /// Stores the title for access by the other properties.
@@ -126,3 +126,4 @@ include 'NetworkSite.php';
 include 'OutreachElement.php';
 include 'PageInformation.php';
 include 'TechnologyElement.php';
+include 'NetworkData.php';
