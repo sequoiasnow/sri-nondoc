@@ -11,7 +11,7 @@ class NetworkData extends ContentType {
      */
     public static function getFields() {
         return array(
-            new TextField( array(
+            new TextAreaField( array(
                 'name'      => 'data',
                 'public'    => array(
                     'title'       => 'Network Data',
