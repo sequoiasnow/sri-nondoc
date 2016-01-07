@@ -6,6 +6,29 @@
  * from the remainder of the site.
  */
 
+// Information for contacts.
+$contactForm = new Form( array(
+    'action' => '',
+    'fields' => array(
+        new TextField( array(
+            'name'        => 'name',
+            'placeholder' => 'John Doe',
+        ) ),
+        new TextField( array(
+            'name'        => 'email',
+            'placeholder' => 'example@email.com',
+        ) ),
+        new TextAreaField( array(
+            'name'        => 'message',
+            'placeholder' => 'Your message here.',
+        ) ),
+        new SubmitField( array(
+            'name'  => 'submit',
+            'value' => 'Send',
+        ) ),
+    )
+), false);
+
 // Establish infomraiton about the network chart.
 $networkChartData = NetworkData::getInstance();
 
@@ -217,20 +240,62 @@ loadJSFile('network');
 
             <div class="outreach-list">
 
-                <ul>
-
-                    <li><a href="">Polar Power</a></li>
-                    <li><a href="">Polar Power</a></li>
-                    <li><a href="">Polar Power</a></li>
-                    <li><a href="">Polar Power</a></li>
-                    <li><a href="">Polar Power</a></li>
-
-                </ul>
+                <a href="">Polar Power</a>
+                <a href="">Polar Power</a>
+                <a href="">Polar Power</a>
+                <a href="">Polar Power</a>
+                <a href="">Polar Power</a>
 
             </div>
 
-        </div>
+        </div> <!-- .content -->
 
     </div> <!-- .page-section -->
+
+    <div id="staff" class="page-section">
+
+        <div class="content">
+
+            <h1>Who are 'we'?</h1>
+
+            <p>
+                We employ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            </p>
+
+        </div>
+
+        <div class="content-extra-large">
+
+            <article class="person card">
+
+                <div class="front" style="background-image: url(http://www.sequoiasnow.com/sri-custom/data/images/person-elin_klaseen.jpg)"></div>
+
+                <div class="back">
+                    <h3 class="name">
+                        Elin Klassen
+                    </h3>
+
+                    <p class="description">
+                        Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit Sed Do Eiusmod Tempor Incididunt Ut Labore Et
+                    </p>
+                </div>
+
+            </article>
+
+        </div> <!-- .content-extra-large -->
+
+    </div> <!-- #staff -->
+
+    <div id="contact" class="page-section">
+
+        <section class="content">
+
+            <h1>Contact Us</h1>
+
+            <?php echo $contactForm; ?>
+
+        </section>
+
+    </div> <!-- #contact -->
 
 <?php include __DIR__ . '/../components/footer.php'; ?>

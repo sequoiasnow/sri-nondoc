@@ -66,7 +66,7 @@
  * Give the product groups a unigue background.
  */
 #product-groups {
-  background-color: rgb(40, 40, 46);
+  background-color: $dark-bgcolor;
   color: color('white');
 }
 
@@ -127,6 +127,7 @@
   @extend %center-vertical;
 
   background-color: rgb(55, 55, 63);
+
   padding: 15px;
   text-align: center;
 }
@@ -175,6 +176,10 @@
   @include display-flex;
   @include flex-flow(row);
   @include justify-content(center);
+
+  @include respond-to('medium') {
+    @include flex-flow(row wrap);
+  }
 }
 
 /**
@@ -204,8 +209,12 @@
   position: relative;
   height: 400px;
   width: 400px;
-  margin: 0;
+  margin: auto;
   font-family: $heading-font;
+}
+
+#network .network-info {
+  z-index: 3;
 }
 
 /**
@@ -228,7 +237,7 @@
  */
 #outreach {
   padding-top: 100px;
-  background-color: rgb(40, 40, 46);
+  background-color: $dark-bgcolor;
   color: color('white');
 }
 
@@ -238,13 +247,73 @@
 #outreach .outreach-list {
   margin-left: auto;
   margin-right: auto;
-  text-align: left;
+  text-align: center;
 }
 
 /**
  * Center the list elemtn text.
  */
 #outreach a {
+  display: block;
   margin: 6px 2px;
   text-decoration: none;
+}
+
+/**
+ * Creates the content container for the form.
+ */
+#contact {
+  background-color: $dark-bgcolor;
+  color: color('white');
+}
+
+/**
+ * Remove field names.
+ */
+#contact .field-name {
+  display: none;
+}
+
+/**
+ * Style the background of the staff content section.
+ */
+#staff {
+  background-color: color('white');
+  color: $text-color;
+}
+
+/**
+ * Allow for card flip and for centering inline block cards.
+ */
+#staff .content-extra-large {
+  @include transform(translateZ(1px));
+  text-align: center;
+}
+
+/**
+ * Style the card to a certain side to ensure consistnat behavio.
+ */
+#staff .person {
+  width: 250px;
+  height: 250px;
+  display: inline-block;
+
+  * {
+    @include box-sizing(border-box);
+  }
+}
+
+/**
+ * Style the image to take up completly the front of the card.
+ */
+#staff .person .front {
+  @include centered-background;
+}
+
+/**
+ * Ensure the back of the card differes from the front
+ */
+#staff .person .back {
+  background-color: $alternate-text-color;
+  color: $light-text-color;
 }

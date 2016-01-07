@@ -72,6 +72,9 @@ $focus-text-color: color('lightgrey');
 /// The color of the background of the site.
 $theme-bgcolor: color('lightgrey');
 
+/// The color used throught the theme as the dark background color
+$dark-bgcolor: rgb(40, 40, 46);
+
 /// The color for site content, where text or other elements are concerned.
 $content-bgcolor: color('white');
 

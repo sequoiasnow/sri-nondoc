@@ -28,7 +28,9 @@ class LocationSite extends ContentType {
                 'name'   => 'coordinates',
                 'public' => array(
                     'title' => 'Coordinates of the Site',
-                    'description' => 'Coordinates that the site is at',
+                    'description' => 'Coordinates that the site is at. These
+                                      should come as latitude, longitude.
+                                      Use decimals.',
                 ),
             ) ),
             new TextField( array(
@@ -89,6 +91,15 @@ class LocationSite extends ContentType {
      */
     public function getTitle() {
         return $this->title;
+    }
+
+    /**
+     * Returns all of the map data in a valid google maps format.
+     *
+     * @return string
+     */
+    public function getMapData() {
+
     }
 
     /**

@@ -3,16 +3,23 @@ $input-font-size: 13px;
 $field-description-width: 250px;
 
 form, form * {
-    @include transition( all 0.25s ease-out );
+  @include transition( all 0.25s ease-out );
 }
 
 /* Style the container. */
 form .form-field {
-    margin: 10px auto;
+  margin: 10px auto;
+}
+
+/* Style the textarea */
+form .form-field textarea {
+  min-height: 120px;
 }
 
 /* Style the input */
-form .form-field input, button {
+form .form-field input,
+form .form-field button,
+form .form-field textarea {
     @include border-radius( 5px );
     border: 1px solid #ccc;
     width: 100%;
