@@ -76,7 +76,7 @@ abstract class ContentType implements FormPrintable, AjaxRetrievable {
         $data = array();
         foreach ( $this as $key => $val ) {
             if ( strpos( $key, '_' ) !== 0 ) {
-                $data[$key] = $val;
+                $data[$key] = Database::escapeString( $val );
             }
         }
         return $data;

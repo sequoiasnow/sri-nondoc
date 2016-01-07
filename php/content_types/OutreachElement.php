@@ -25,6 +25,14 @@ class OutreachElement extends ContentType {
                 ),
             ) ),
             new TextField( array(
+                'name'   => 'url',
+                'public' => array(
+                    'title'       => 'Link to outreach site',
+                    'description' => 'The full link to a site that is described
+                                      for outreach if available.',
+                ),
+            )),
+            new TextAreaField( array(
                 'name'   => 'description',
                 'public' => array(
                     'title' => 'Description',
@@ -43,6 +51,7 @@ class OutreachElement extends ContentType {
      */
     public static function getFormFieldMap() {
         return array(
+            'url'             => 'url',
             'name'            => 'title',
             'description'     => 'description',
         );

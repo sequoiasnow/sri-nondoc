@@ -33,6 +33,14 @@ class ProductGroup extends ContentType {
                 ),
             ) ),
             new TextField( array(
+                'name'   => 'icon',
+                'public' => array(
+                    'title' => 'The Icon for the product group',
+                    'description' => 'The name of the icon, as follows fa- at
+                                       fontawesome icons.',
+                ),
+            ) ),
+            new TextAreaField( array(
                 'name'   => 'description',
                 'public' => array(
                     'title' => 'Description',
@@ -51,9 +59,10 @@ class ProductGroup extends ContentType {
      */
     public static function getFormFieldMap() {
         return array(
-            'name'              => 'title',
-            'blurb'             => 'blurb',
-            'description'       => 'description'
+            'name'        => 'title',
+            'blurb'       => 'blurb',
+            'description' => 'description',
+            'icon'        => 'icon',
         );
     }
 
@@ -82,6 +91,7 @@ class ProductGroup extends ContentType {
     public $title;
     public $blurb;
     public $description;
+    public $icon;
 
     /**
      * The name of an instance of the NavigationLink class.

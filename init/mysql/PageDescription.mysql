@@ -1,8 +1,9 @@
 DROP TABLE IF EXISTS page_description;
 CREATE TABLE page_description (
     id INT(11) NOT NULL AUTO_INCREMENT,
-    title VARCHAR(50) NOT NULL,
-    blurb VARCHAR(200) NOT NULL,
-    description VARCHAR(1500) NOT NULL,
+    title VARCHAR(150) NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    alternate VARCHAR(200),
+    description TEXT NOT NULL,
     PRIMARY KEY( id )
 );

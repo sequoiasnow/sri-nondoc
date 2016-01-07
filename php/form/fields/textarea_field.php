@@ -9,9 +9,7 @@ class TextareaField extends Field {
             <div class=\"field-description\">
                 <span>{$this->getPublic('description')}</span>
             </div>
-            <textarea {$this->getAttrStr()} >
-                {$this['value']}
-            </textarea>
+            <textarea {$this->getAttrStr()} >{$this['value']}</textarea>
         </div>";
     }
 }
