@@ -36,30 +36,36 @@ include __DIR__ . '/../components/header.php';
 
 // Add the neccessary javascript.
 loadJSFile('network');
+loadJSFile('navigation');
 
 ?>
     <nav id="primary-navigation">
 
-        <a href="contact">Contact</a>
 
-        <a href="equipment">Equipment</a>
 
-        <a href="network">Netwok</a>
+        <a href="#about">About</a>
 
-        <a href="technology">Technology</a>
+        <a href="#product-groups">Products</a>
+
+        <a href="#network">Netwok</a>
+
+        <a href="#contact">Contact</a>
 
     </nav> <!-- #primary-navigation -->
 
+
     <div id="title-section" class="page-section">
+
+        <?php $titleInfo = PageDescription::getFromName( 'title' ); ?>
 
         <section class="content">
 
-            <h1>Site Title</h1>
+            <h1><?php print __( $titleInfo->title ); ?></h1>
 
-            <p class="slogan">A very, very, brief site slogan</p>
+            <p class="slogan"><?php print $titleInfo->alternate; ?></p>
 
             <p class="description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                <?php echo __( $titleInfo->description ); ?>
             </p>
 
         </section>
@@ -70,20 +76,21 @@ loadJSFile('network');
 
     <div id="about" class="page-section">
 
+        <?php $aboutInfo = PageDescription::getFromName( 'about' ); ?>
+
         <section class="content">
 
-            <h1>Who are we?</h1>
+            <h1><?php echo __( $aboutInfo->title ); ?></h1>
 
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula eu sapien consequat eleifend. Donec nec dolor erat, condimentum sagittis sem. Praesent porttitor porttitor risus, dapibus rutrum ipsum gravida et. Integer lectus nisi, facilisis sit amet eleifend nec, pharetra ut augue. Integer quam
-            </p>
+            <p><?php echo __( $aboutInfo->description ); ?></p>
 
             <div class="tags">
 
-                <div class="tag">Research</div>
-                <div class="tag">Science</div>
-                <div class="tag">Communication</div>
-                <div class="tag">Arctic</div>
+                <?php foreach ( explode( $aboutInfo->alternate, ' ' ) as $tag ) : ?>
+
+                    <div class="tag"><?php print $tag; ?></div>
+
+                <?php endforeach; ?>
 
             </div>
 
@@ -93,103 +100,46 @@ loadJSFile('network');
 
     <div id="product-groups" class="page-section">
 
+        <?php $productInfo = PageDescription::getFromName( 'product-groups' ); ?>
+
         <section class="content">
 
-            <h1>What do we do?</h1>
+            <h1><?php print $productInfo->title; ?></h1>
 
-            <p>
-                We make technology. Phones, Trackers, Satelite Communications, Networks. <br> We work hard to ensure that safety and security is achieved for arctic research while creating research equipment.
-            </p>
+            <p><?php print $productInfo->description; ?></p>
 
         </section> <!-- .content -->
 
         <section class="group-container content-extra-large">
 
-            <article class="group">
+            <?php
+            // Get all of the descriptions for the fields.
+            $groups = ProductGroup::getAllInstances();
 
-                <div class="front">
-                    <div class="icon-container">
-                        <span class="fa fa-phone"></span>
-                    </div>
+            foreach ( $groups as $group ) : ?>
 
-                    <div class="name">
-                        <p>Satelite Phones</p>
-                    </div>
-                </div> <!-- .front -->
+                <article class="group">
 
-                <div class="back">
-                    <div class="description">
-                        <p>The phones available to Arctic researchers provide global reliable voice using a variety of satellite-based services.</p>
-                    </div>
+                    <div class="front">
+                        <div class="icon-container">
+                            <span class="fa fa-<?php print $group->icon; ?>"></span>
+                        </div>
 
-                    <a class="doc-link" href="">Documentation</a>
-                </div> <!-- .back -->
-            </article> <!-- .group -->
+                        <div class="name">
+                            <p><?php print $group->title; ?></p>
+                        </div>
+                    </div> <!-- .front -->
 
-            <article class="group">
+                    <div class="back">
+                        <div class="description">
+                            <p><?php print $group->blurb; ?></p>
+                        </div>
 
-                <div class="front">
-                    <div class="icon-container">
-                        <span class="fa fa-phone"></span>
-                    </div>
+                        <a class="doc-link" href="">Documentation</a>
+                    </div> <!-- .back -->
+                </article> <!-- .group -->
 
-                    <div class="name">
-                        <p>Satelite Phones</p>
-                    </div>
-                </div> <!-- .front -->
-
-                <div class="back">
-                    <div class="description">
-                        <p>The phones available to Arctic researchers provide global reliable voice using a variety of satellite-based services.</p>
-                    </div>
-
-                    <a class="doc-link" href="">Documentation</a>
-                </div> <!-- .back -->
-            </article> <!-- .group -->
-
-            <article class="group">
-
-                <div class="front">
-                    <div class="icon-container">
-                        <span class="fa fa-phone"></span>
-                    </div>
-
-                    <div class="name">
-                        <p>Satelite Phones</p>
-                    </div>
-                </div> <!-- .front -->
-
-                <div class="back">
-                    <div class="description">
-                        <p>The phones available to Arctic researchers provide global reliable voice using a variety of satellite-based services.</p>
-                    </div>
-
-                    <a class="doc-link" href="">Documentation</a>
-                </div> <!-- .back -->
-            </article> <!-- .group -->
-
-            <article class="group">
-
-                <div class="front">
-                    <div class="icon-container">
-                        <span class="fa fa-phone"></span>
-                    </div>
-
-                    <div class="name">
-                        <p>Satelite Phones</p>
-                    </div>
-                </div> <!-- .front -->
-
-                <div class="back">
-                    <div class="description">
-                        <p>The phones available to Arctic researchers provide global reliable voice using a variety of satellite-based services.</p>
-                    </div>
-
-                    <a class="doc-link" href="">Documentation</a>
-                </div> <!-- .back -->
-            </article> <!-- .group -->
-
-
+            <?php endforeach; ?>
         </section> <!-- .group-container -->
 
     </div> <!-- #about -->
@@ -204,35 +154,31 @@ loadJSFile('network');
 
             </section>
 
+            <?php $networkInfo = PageDescription::getFromName( 'network' ); ?>
+
             <section class="network-info col">
 
-                <h1>Network.</h1>
+                <h1><?php print $networkInfo->title; ?></h1>
 
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula
-                </p>
+                <p><?php print $networkInfo->description; ?></p>
 
+                <a class="doc-link" href="">Documentation</a>
 
-                <a class="doc-link" href="">
-                    Documentation
-                </a>
+            <seciton> <!-- .network-info -->
 
-            <seciton>
+        </section> <!-- .content-extra-large -->
 
-
-        </section>
-
-    </div>
+    </div> <!-- #network -->
 
     <div id="outreach" class="page-section">
 
+        <?php $outreachInfo = PageDescription::getFromName( 'outreach' ); ?>
+
         <div class="content">
 
-            <h1>Who do we work with?</h1>
+            <h1><?php print $outreachInfo->title; ?></h1>
 
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-            </p>
+            <p><?php print $outreachInfo->description; ?></p>
 
         </div>
 
@@ -240,11 +186,15 @@ loadJSFile('network');
 
             <div class="outreach-list">
 
-                <a href="">Polar Power</a>
-                <a href="">Polar Power</a>
-                <a href="">Polar Power</a>
-                <a href="">Polar Power</a>
-                <a href="">Polar Power</a>
+                <?php
+                $outreachSites = OutreachElement::getAllInstances();
+
+
+                foreach ( $outreachSites as $site ) : ?>
+
+                    <a href="<?php print $site->url; ?>"><?php print __( $site->name ); ?></a>
+
+                <?php endforeach; ?>
 
             </div>
 
@@ -254,33 +204,37 @@ loadJSFile('network');
 
     <div id="staff" class="page-section">
 
+        <?php $staffInfo = PageDescription::getFromName('staff'); ?>
+
         <div class="content">
 
-            <h1>Who are 'we'?</h1>
+            <h1><?php print $staffInfo->title; ?></h1>
 
-            <p>
-                We employ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </p>
+            <p><?php print __( $staffInfo->description ); ?></p>
 
         </div>
 
         <div class="content-extra-large">
 
-            <article class="person card">
+            <?php foreach ( AboutPerson::getAllInstances() as $person ) : ?>
 
-                <div class="front" style="background-image: url(http://www.sequoiasnow.com/sri-custom/data/images/person-elin_klaseen.jpg)"></div>
+                <article class="person card">
 
-                <div class="back">
-                    <h3 class="name">
-                        Elin Klassen
-                    </h3>
+                    <div class="front" style="background-image: url(<?php print get_image( $person->imagePath ); ?>)"></div>
 
-                    <p class="description">
-                        Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit Sed Do Eiusmod Tempor Incididunt Ut Labore Et
-                    </p>
-                </div>
+                    <div class="back">
+                        <h3 class="name">
+                            <?php print $person->name; ?>
+                        </h3>
 
-            </article>
+                        <p class="description">
+                            <?php print __( $person->description ); ?>
+                        </p>
+                    </div>
+
+                </article>
+
+            <?php endforeach; ?>
 
         </div> <!-- .content-extra-large -->
 
@@ -288,9 +242,11 @@ loadJSFile('network');
 
     <div id="contact" class="page-section">
 
+        <?php $contactInfo = PageDescription::getFromName( 'contact' ); ?>
+
         <section class="content">
 
-            <h1>Contact Us</h1>
+            <h1><?php print $contactInfo->title; ?></h1>
 
             <?php echo $contactForm; ?>
 

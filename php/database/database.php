@@ -194,8 +194,6 @@ class Database {
         $query .= '(' . implode( $keys, ', ' ) . ')' . ' ';
         $query .= 'VALUES (' . implode( $values, ', ' ) . ')';
 
-        echo $query
-;
         // Get the connection
         $connection = self::getConnection();
 

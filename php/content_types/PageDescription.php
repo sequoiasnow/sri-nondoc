@@ -19,25 +19,44 @@ class PageDescription extends ContentType {
             new TextField( array(
                 'name'   => 'name',
                 'public' => array(
-                    'title'       => 'Product Group',
-                    'description' => 'The name of the page that the
-                                      element will describe and be displayed on',
+                    'title'       => 'Page Name',
+                    'description' => 'The name of the page section. The available
+                                      options are: title, about, product-groups
+                                      network, outreach, staff, contact',
                 ),
+                'validation' => function ( $val ) {
+                    return in_array( $val, array(
+                        'title',
+                        'about',
+                        'product-groups',
+                        'network',
+                        'outreach',
+                        'staff',
+                        'contact',
+                    ) );
+                },
             ) ),
             new TextField( array(
-                'name'   => 'blurb',
+                'name' => 'title',
                 'public' => array(
-                    'title' => 'Small Blurb of Group',
-                    'description' => 'Short blurb about the page that can be
-                                      displayed on another page',
+                    'title'        => 'Title',
+                    'description' => 'The physical title shown on this page',
                 ),
             ) ),
             new TextField( array(
+                'name'     => 'alternate',
+                'public'   => array(
+                    'title'       => 'Alternate Field',
+                    'description' => 'Where to put alternate information, such
+                                      as tags or a slogan.',
+                ),
+            ) ),
+            new TextAreaField( array(
                 'name'   => 'description',
                 'public' => array(
                     'title' => 'Description',
-                    'description' => 'General description of the page
-                                      and other relevant details',
+                    'description' => 'General description/introduction of the
+                                      page.',
                 ),
             ) ),
         );
@@ -51,9 +70,10 @@ class PageDescription extends ContentType {
      */
     public static function getFormFieldMap() {
         return array(
-            'name'              => 'title',
-            'blurb'             => 'blurb',
-            'description'       => 'description'
+            'name'        => 'name',
+            'title'       => 'title',
+            'alternate'   => 'alternate',
+            'description' => 'description',
         );
     }
 
@@ -63,7 +83,7 @@ class PageDescription extends ContentType {
      * @return string
      */
     public static function getDescription() {
-        return 'The page description will be displayed with the blurb on the
+        return 'The page description will be displayed on the
                 splash page and gives a large description of one of the
                 other relevant pages that are part of the site.';
     }
@@ -77,10 +97,21 @@ class PageDescription extends ContentType {
         return 'Page Description';
     }
 
+    /**
+     *
+     *
+     */
+    public static function getFromName( $name ) {
+        $table = self::TableName;
+        $res = self::getFromQuery( "SELECT * FROM $table WHERE name='$name'" );
+        return $res[0];
+    }
+
     /// Variables in a coordance to the database values.
     public $id;
+    public $name;
     public $title;
-    public $blurb;
+    public $alternate;
     public $description;
 
     /**
@@ -89,20 +120,6 @@ class PageDescription extends ContentType {
      * @return string
      */
     public function getTitle() {
-        return $this->title;
-    }
-
-    /**
-     * Print a navigation link in a cohesive fashion.
-     *
-     * @return string
-     */
-    public function __toString() {
-        // Transform the title to be html outputable.
-        $title = htmlentities($this->title );
-
-        return "<div class=\"location-site\"
-            <a href=\"{$this->href}\">{$this->title}</a>
-        </div>";
+        return $this->name;
     }
 }
