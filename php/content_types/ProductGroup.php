@@ -35,7 +35,7 @@ class ProductGroup extends ContentType {
             new TextField( array(
                 'name'   => 'icon',
                 'public' => array(
-                    'title' => 'The Icon for the product group',
+                    'title' => 'Product Group Icon',
                     'description' => 'The name of the icon, as follows fa- at
                                        fontawesome icons.',
                 ),
