@@ -119,7 +119,6 @@ abstract class ContentType implements FormPrintable, AjaxRetrievable {
 
 include 'User.php';
 include 'AboutPerson.php';
-include 'NavigationLink.php';
 include 'NetworkData.php';
 include 'OutreachElement.php';
 include 'PageDescription.php';
