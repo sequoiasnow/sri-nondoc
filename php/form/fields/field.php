@@ -25,6 +25,9 @@ class Field implements ArrayAccess {
     /// Origional arguments.
     protected $args;
 
+    /// Specifies whether a property of the field must be sent.
+    public $required;
+
     /**
      * Transforms a key value array into an html string of attributes.
      *
@@ -86,6 +89,7 @@ class Field implements ArrayAccess {
         $this->validation = isset( $args['validation'] ) ?
                             $args['validation'] : function() { return true; };
 
+        $this->required = isset($args['required']) ? $args['required'] : 0;
 
         $this->name = isset( $args['name'] ) ? $args['name'] : '';
         $this->args = $args;
@@ -162,7 +166,7 @@ class Field implements ArrayAccess {
 
 
 // Include all the fields...
-include 'image_field.php';
+include 'file_field.php';
 include 'password_field.php';
 include 'text_field.php';
 include 'textarea_field.php';

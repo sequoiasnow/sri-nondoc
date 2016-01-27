@@ -33,15 +33,21 @@ class Form {
         $args     = array();
 
         foreach ( $fullFields as $field ) {
+            // Check that the field is not a special.
+            if ( strpos( $field->name, '__' ) === 0 ) {
+                continue;
+            }
+
             // Check if the field is empty.
-            if ( ! isset( $data[$field->name] ) ) {
+            if ( ! isset( $data[$field->name] ) && $field->required ) {
                 $emptys[] = $field->name;
                 continue;
             }
 
             // Check if the field is valid
             $validation = $field->validation;
-            if ( ! $validation( $data[$field->name], $data ) ) {
+            $name = isset( $data[$field->name] ) ? $data[$field->name] : null;
+            if ( ! $validation( $name, $data ) ) {
                 $invalids[] = $field->name;
                 continue;
             }
@@ -95,6 +101,12 @@ class Form {
         $fields = $class::getFields();
         $desc   = $class::getDescription();
 
+        $attrs = array();
+
+        if ( method_exists( $class, 'getFormAttrs' ) ) {
+            $attrs = $class::getFormAttrs();
+        }
+
         $nameFieldMap = $class::getFormFieldMap();
 
         // Loop through the fields to change into objects if need be.
@@ -145,6 +157,7 @@ class Form {
             'description' => $desc,
             'action'      => $action,
             'desc_cont'   => true,
+            'attrs'       => $attrs,
         ) );
     }
 
@@ -160,11 +173,11 @@ class Form {
      * @return string
      */
     protected function attributeStr() {
-        $attrs = array(
-            'id'     => $this->name,
-            'action' => '' . $this->action,
-            'method' => 'POST',
-        );
+        $attrs = isset( $this->attrs ) ? $this->attrs : array();
+
+        $attrs['id']     = $this->name;
+        $attrs['action'] = $this->action;
+        $attrs['method'] = 'POST';
 
         $html = '';
 

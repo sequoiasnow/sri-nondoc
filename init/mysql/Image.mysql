@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS images;
+CREATE TABLE images (
+    id INT(4) AUTO_INCREMENT NOT NULL,
+    path VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id)
+);

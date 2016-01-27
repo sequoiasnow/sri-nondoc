@@ -108,6 +108,11 @@ class API {
                 $this->objects = '';
             }
 
+            // Exit early if there is as of yet know data.
+            if ( ! $res || ! $res->num_rows ) {
+                return;
+            }
+
             while ( $row = $res->fetch_assoc() ) {
 
                 if ( $this->returnType == ApiReturnType::Data ) {
@@ -139,6 +144,7 @@ class API {
 
         // Establish information about the content type.
         $contentType = $this->contentType;
+
         $tableName = $contentType::TableName;
 
         // Ensure the id also exists.
@@ -146,7 +152,14 @@ class API {
         if ( ! $res->num_rows ) {
             throw new Exception( 'Not a valid id.' );
         }
+
+        // Check if a method exists for a content type to perform a delete.
+        if ( method_exists( $contentType, 'delete' ) && $res ) {
+            return ( new $contentType( $res->fetch_assoc() ) )->delete();
+        }
+
         $res->close();
+
         // Perform the delete.
         Database::query( "DELETE FROM $tableName WHERE id=$this->id" );
     }

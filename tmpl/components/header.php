@@ -38,7 +38,7 @@ $pageInformation = PageInformation::getFromPath( PATH );
 <html>
     <head>
         <!-- meta -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="utf-8">
 
         <title><?php echo $pageInformation->title; ?></title>

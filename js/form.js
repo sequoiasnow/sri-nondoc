@@ -20,6 +20,11 @@
             }
         });
 
+        // Ensure that this form has no file uploads -- bad for ajax.
+        if ( this.find('input[type="file"]').length ) {
+            return this;
+        }
+
 
         var action = this.attr( 'action' );
 

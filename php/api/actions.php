@@ -24,6 +24,16 @@ class Action {
         // Get all the post data for this form...
         $post = $_POST;
 
+        // Check if a return value is sent, this value would indicate the url
+        // to return to. This is done in some cases such as image uploads that
+        // fail to use ajax.
+        if ( isset( $_POST['__REDIRECT_TO'] ) ) {
+            print_r( call_user_func( $func, $post ) );
+
+            header('Location: ' . WEB_ROOT . '/' . $_POST['__REDIRECT_TO'] );
+            die();
+        }
+
         // Print out the result as json for future ajax calls use.
         echo json_encode( call_user_func( $func, $post ) );
     }

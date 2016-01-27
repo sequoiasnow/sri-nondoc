@@ -12,20 +12,6 @@ function __( $string ) {
     return htmlspecialchars( $string );
 }
 
-/**
- * Returns the actual path to the image.
- *
- * @param string $image
- *
- * @return string
- */
-function get_image( $image ) {
-    if ( strpos( $image, 'http' ) != -1 ) {
-        return "files/images/$image";
-    }
-    return $image;
-}
-
 // Define the current page path.
 define( 'PATH', isset( $_GET['path'] ) ? $_GET['path'] : '' );
 
