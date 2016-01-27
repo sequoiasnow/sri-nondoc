@@ -220,7 +220,7 @@ loadJSFile('navigation');
 
                 <article class="person card">
 
-                    <div class="front" style="background-image: url(<?php print get_image( $person->imagePath ); ?>)"></div>
+                    <div class="front" style="background-image: url(<?php print Image::get_path( $person->imagePath ); ?>)"></div>
 
                     <div class="back">
                         <h3 class="name">
