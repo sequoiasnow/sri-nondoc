@@ -8,7 +8,7 @@ require_once 'definitions.php';
  *
  * @return string
  */
-function __( $string ) {
+function __( $htmlText ) {
     $ent = ENT_COMPAT | ENT_HTML401;
 
     $matches = Array();
