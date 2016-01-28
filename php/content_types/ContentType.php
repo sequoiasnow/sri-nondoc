@@ -125,3 +125,4 @@ include 'PageDescription.php';
 include 'PageInformation.php';
 include 'ProductGroup.php';
 include 'Image.php';
+include 'ContactInfo.php';

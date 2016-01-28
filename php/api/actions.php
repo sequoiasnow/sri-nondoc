@@ -20,7 +20,7 @@ class Action {
      *
      * @param array $func
      */
-    public static function callActionFunc( array $func ) {
+    public static function callActionFunc( $func ) {
         // Get all the post data for this form...
         $post = $_POST;
 
@@ -54,7 +54,7 @@ class Action {
      *
      * @param array $func
      */
-    public function __construct( array $func ) {
+    public function __construct( $func ) {
         // Generate the identifier.
         $this->setIdentifier();
 

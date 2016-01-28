@@ -12,14 +12,15 @@ define( 'USER_LOGIN', WEB_ROOT . '/login' );
 // Allow requests to be made to the database...
 require_once ROOT_DIR . '/php/database/database.php';
 
-// Allow the use of actions in form.
-require_once ROOT_DIR . '/php/api/api.php';
-
 // Allow the use of forms.
 require_once ROOT_DIR . '/php/form/form.php';
 
 // Allowes the implementation of the api
 require_once ROOT_DIR . '/php/api/api.php';
+
+// Allowes some simple utility functiosn that are used throught the site for
+// a variety of purposes.
+require_once ROOT_DIR . '/php/utils.php';
 
 // Include information about the data types.
 require_once ROOT_DIR . '/php/content_types/ContentType.php';

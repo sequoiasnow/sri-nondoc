@@ -8,7 +8,7 @@
 
 // Information for contacts.
 $contactForm = new Form( array(
-    'action' => '',
+    'action' => new Action( 'contactUs' ),
     'fields' => array(
         new TextField( array(
             'name'        => 'name',
@@ -47,7 +47,7 @@ loadJSFile('navigation');
 
         <a href="#product-groups">Products</a>
 
-        <a href="#network">Netwok</a>
+        <a href="#network">Network</a>
 
         <a href="#contact">Contact</a>
 
@@ -192,7 +192,7 @@ loadJSFile('navigation');
 
                 foreach ( $outreachSites as $site ) : ?>
 
-                    <a href="<?php print $site->url; ?>"><?php print __( $site->name ); ?></a>
+                    <a href="<?php print $site->url; ?>"><?php print __( $site->title ); ?></a>
 
                 <?php endforeach; ?>
 

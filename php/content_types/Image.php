@@ -7,7 +7,7 @@
  */
 class Image extends ContentType {
     /// The table name specified for this content type
-    const TableName = 'image';
+    const TableName = 'images';
 
     /**
      * Allowes the upload of imagea by changing some attributes of the form

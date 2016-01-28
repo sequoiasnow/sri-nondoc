@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS contact_info;
+CREATE TABLE contact_info (
+    id INT(3) AUTO_INCREMENT NOT NULL,
+    fromEmail VARCHAR(255),
+    toEmail VARCHAR(255),
+    subject VARCHAR(255),
+    PRIMARY KEY(id)
+);
