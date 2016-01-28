@@ -9,7 +9,25 @@ require_once 'definitions.php';
  * @return string
  */
 function __( $string ) {
-    return htmlspecialchars( $string );
+    $ent = ENT_COMPAT | ENT_HTML401;
+
+    $matches = Array();
+    $sep = '###HTMLTAG###';
+
+    preg_match_all(":</{0,1}[a-z]+[^>]*>:i", $htmlText, $matches);
+
+    $tmp = preg_replace(":</{0,1}[a-z]+[^>]*>:i", $sep, $htmlText);
+    $tmp = explode($sep, $tmp);
+
+    for ($i=0; $i<count($tmp); $i++)
+        $tmp[$i] = htmlentities($tmp[$i], $ent, 'UTF-8', false);
+
+    $tmp = join($sep, $tmp);
+
+    for ($i=0; $i<count($matches[0]); $i++)
+        $tmp = preg_replace(":$sep:", $matches[0][$i], $tmp, 1);
+
+    return $tmp;
 }
 
 // Define the current page path.
