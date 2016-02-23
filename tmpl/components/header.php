@@ -9,25 +9,23 @@ if ( ! isset( $bodyClasses ) ) {
     $bodyClasses = array();
 }
 
-
 /**
  * Establishes a method of including javascript files. This is implemented
  * by the footer and the files loaded before the closing body tag.
  */
-$loadJSFiles = array( 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js' );
+$GLOBALS['load_js_files'] = array();
 function loadJSFile( $fileName ) {
-    global $loadJSFiles;
-
     // Extract out the file name into an actual path.
-    $fileName = "js/$fileName.js";
+    $fileName = strpos( $fileName, 'http' ) === 0 ? $fileName : "js/$fileName.js";
 
     // Confirm the necesity of loading the file.
-    if ( ! in_array( $fileName, $loadJSFiles ) ) {
-        $loadJSFiles[] = $fileName;
+    if ( ! in_array( $fileName, $GLOBALS['load_js_files'] ) ) {
+        $GLOBALS['load_js_files'][] = $fileName;
     }
 }
 
 // Some initial files...
+loadJSFile( 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js' );
 loadJSFile( 'form' );
 
 // Establish the current page, and contain information concerning the page

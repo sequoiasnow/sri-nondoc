@@ -15,6 +15,9 @@ abstract class ContentType implements FormPrintable, AjaxRetrievable {
         // Query the database for the result.
         $result = Database::query( $query );
 
+        // Guard against null results.
+        if ( ! $result ) { return array(); }
+
         // Loop through the result transforming each value into a class.
         $return = array();
         while ( $row = $result->fetch_assoc() ) {
@@ -112,7 +115,7 @@ abstract class ContentType implements FormPrintable, AjaxRetrievable {
      * @return string
      */
     public function __toString() {
-        return $this->getTitle();
+        return __($this->getTitle());
     }
 }
 
@@ -120,9 +123,11 @@ abstract class ContentType implements FormPrintable, AjaxRetrievable {
 include 'User.php';
 include 'AboutPerson.php';
 include 'NetworkData.php';
-include 'OutreachElement.php';
+include 'WorkWith.php';
 include 'PageDescription.php';
 include 'PageInformation.php';
 include 'ProductGroup.php';
 include 'Image.php';
 include 'ContactInfo.php';
+include 'AboutLink.php';
+include 'Locations.php';

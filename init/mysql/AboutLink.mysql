@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS about_links;
+CREATE TABLE about_links (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    link VARCHAR(255) NOT NULL,
+    image VARCHAR(255) NOT NULL,
+    blurb VARCHAR(300),
+    title VARCHAR(50) NOT NULL,
+    PRIMARY KEY(id)
+);

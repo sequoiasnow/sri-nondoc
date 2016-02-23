@@ -71,76 +71,6 @@
 }
 
 /**
- * Allow for a fluid layout of containers that are the product groups. This is
- * accomplished with css flexbox and can not be done without it.
- *
- * 1. Ensure that all cards a are forward of the background to allow flip.
- * 2. Give an acceptable margin downwards for the group container.
- */
-#product-groups .group-container {
-  @include transform(translateZ(1px)); /* 1 */
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-/**
- * Style the group to reflect their icon and names in a coherant style.
- *
- * 0. Make the group a card.
- * 1. Set an acceptable size, 300px in this case.
- * 2. Allow for a gap betwen groups
- * 3. Allow for padding to be useful for children.
- */
-#product-groups .group-container .group {
-  @extend %card; /* 0 */
-
-  display: inline-block;
-  width: 250px; /* 1 */
-  height: 250px; /* 1 */
-  margin: 3px; /* 3 */
-
-  * {
-    @include box-sizing(border-box); /* 3 */
-  }
-}
-
-/**
- * Show the icon as a proper size to represent its content group
- */
-#product-groups .group-container .icon-container {
-  font-size: 65px;
-}
-
-/**
- * Show the proper product group name size.
- */
-#product-groups .group-container .name {
-  margin: 5px auto;
-}
-
-/**
- * Style the front of the card that will be shown.
- *
- * Also center content verically in container using a flexbox technigue.
- */
-#product-groups .group-container .front {
-  @extend %center-vertical;
-
-  background-color: rgb(55, 55, 63);
-
-  padding: 15px;
-  text-align: center;
-}
-
-/**
- *  Style the back of the card that will be shown
- */
-#product-groups .group-container .back {
-  color: color('white');
-  background-color: $alternate-text-color;
-}
-
-/**
  * Style the documentation link.
  */
 .doc-link {
@@ -233,18 +163,18 @@
 }
 
 /**
- * Give basic styling and padding to the outreach information.
+ * Give basic styling and padding to the work-with information.
  */
-#outreach {
+#work-with {
   padding-top: 100px;
   background-color: $dark-bgcolor;
   color: color('white');
 }
 
 /**
- * Move the outreach list elements to the center, beyond text alignment.
+ * Move the work-with list elements to the center, beyond text alignment.
  */
-#outreach .outreach-list {
+#work-with .work-with-list {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -253,7 +183,7 @@
 /**
  * Center the list elemtn text.
  */
-#outreach a {
+#work-with a {
   display: block;
   margin: 6px 2px;
   text-decoration: none;
@@ -316,4 +246,23 @@
 #staff .person .back {
   background-color: $alternate-text-color;
   color: $light-text-color;
+}
+
+/**
+ * Change the locations to display a google map properly.
+ */
+#locations {
+  min-height: 500px;
+  position: relative;
+}
+
+/**
+ * Make the google map take over the contents of locations.
+ */
+#locations-map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }

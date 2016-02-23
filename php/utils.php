@@ -11,3 +11,43 @@ function contactUs( $data ) {
     // management porition
     $info = ContactInfo::getInstance();
 }
+
+/**
+ * Escapes a given string for html special chars. Preserves tags.
+ *
+ * @link http://stackoverflow.com/questions/1364933/htmlentities-in-php-but-preserving-html-tags
+ *
+ * @param string $htmlText
+ * @param int $ent
+ *
+ * @return string
+ */
+function __($htmlText, $ent = 0) {
+    if ( ! $ent ) $ent = ENT_COMPAT | ENT_HTML401;
+
+    $matches = Array();
+    $sep = '###HTMLTAG###';
+
+    preg_match_all(":</{0,1}[a-z]+[^>]*>:i", $htmlText, $matches);
+
+    $tmp = preg_replace(":</{0,1}[a-z]+[^>]*>:i", $sep, $htmlText);
+    $tmp = explode($sep, $tmp);
+
+    for ($i=0; $i<count($tmp); $i++)
+        $tmp[$i] = htmlentities($tmp[$i], $ent, 'UTF-8', false);
+
+    $tmp = join($sep, $tmp);
+
+    for ($i=0; $i<count($matches[0]); $i++)
+        $tmp = preg_replace(":$sep:", $matches[0][$i], $tmp, 1);
+
+    return $tmp;
+}
+
+/**
+ * Allows the inclusion of a component template file for easier convenciance
+ * of use.
+ */
+function loadComponetTempalte( $name ) {
+    include ROOT_DIR . "/tmpl/components/{$name}.php";
+}

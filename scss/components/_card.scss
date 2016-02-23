@@ -8,15 +8,21 @@
  * Below is shown the implementation of the basic configuration of the card
  * to allow transformation.
  */
-%card {
+%card > .card-content {
   @include transform-style(preserve-3d);
   @include transition(transform 0.5s);
   position: relative;
+}
 
-  &:hover {
+%card {
+  color: color('white');
+
+  &:hover > .card-content {
     @include transform(rotateY(180deg));
   }
 }
+
+
 
 /**
  * Set up a backside of the card that allowes for the transitioning flip.
@@ -25,14 +31,6 @@
   @include transform(rotateY(180deg));
 }
 
-/**
- * Configure a front side of the card (displayed by default) that will be shown.
- *
- * The z index configuration provides minor improvements in configuratio.
- */
-%card .front {
-
-}
 
 /**
  * Position and configure both the back and front sides of the card for

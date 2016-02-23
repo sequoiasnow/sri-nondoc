@@ -75,16 +75,17 @@ class Form {
                 'invalids' => $invalids,
                 'emptys'   => $emptys,
             );
-        } else {
-            // Create the object.
-            $object = new $contentType( $args );
-
-            // Save the object to the database.
-            Database::save( $object );
-
-            // Indicate success of venture.
-            return array( 'success' => true );
         }
+        
+        // Create the object.
+        $object = new $contentType( $args );
+
+        // Save the object to the database.
+        Database::save( $object );
+
+        // Indicate success of venture.
+        return array( 'success' => true );
+
     }
 
     /**

@@ -48,6 +48,16 @@ class ProductGroup extends ContentType {
                                       and other details',
                 ),
             ) ),
+            new TextField( array(
+                'name'     => 'doc-link',
+                'public'   => array(
+                    'title'       => 'Documentation Link',
+                    'description' => 'The link to the documentation for this
+                                      product, if there is no link, simply
+                                      leave this field empty.',
+                ),
+                'required' => false,
+            ) ),
         );
     }
 
@@ -63,6 +73,7 @@ class ProductGroup extends ContentType {
             'blurb'       => 'blurb',
             'description' => 'description',
             'icon'        => 'icon',
+            'doc-link'    => 'doclink',
         );
     }
 
@@ -92,6 +103,7 @@ class ProductGroup extends ContentType {
     public $blurb;
     public $description;
     public $icon;
+    public $doclink;
 
     /**
      * The name of an instance of the NavigationLink class.

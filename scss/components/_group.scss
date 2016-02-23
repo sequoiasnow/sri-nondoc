@@ -1,0 +1,92 @@
+
+/**
+ * Allow for a fluid layout of containers that are the product groups. This is
+ * accomplished with css flexbox and can not be done without it.
+ *
+ * 1. Ensure that all cards a are forward of the background to allow flip.
+ * 2. Give an acceptable margin downwards for the group container.
+ */
+.group-container {
+  @include transform(translateZ(1px)); /* 1 */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/**
+ * Style the group to reflect their icon and names in a coherant style.
+ *
+ * 0. Make the group a card.
+ * 1. Set an acceptable size, 300px in this case.
+ * 2. Allow for a gap betwen groups
+ * 3. Allow for padding to be useful for children.
+ */
+.group-container .card-content {
+  width: 250px; /* 1 */
+  height: 250px; /* 1 */
+  margin: 3px; /* 3 */
+
+  * {
+    @include box-sizing(border-box); /* 3 */
+  }
+}
+
+/**
+ * Keep the cards inline.
+ */
+.group-container .card {
+    display: inline-block;
+}
+
+/**
+ * Show the icon as a proper size to represent its content group
+ */
+.group-container .icon-container {
+  font-size: 65px;
+}
+
+/**
+ * Show the proper product group name size.
+ */
+.group-container .name {
+  margin: 5px auto;
+}
+
+/**
+ * Style the front of the card that will be shown.
+ *
+ * Also center content verically in container using a flexbox technigue.
+ */
+.group-container .front {
+  @extend %center-vertical;
+
+  background-color: rgb(55, 55, 63);
+
+  padding: 15px;
+  text-align: center;
+}
+
+/**
+ *  Style the back of the card that will be shown
+ */
+.group-container .back {
+  color: color('white');
+  background-color: $alternate-text-color;
+}
+
+/**
+ * Show the image as a proper background enabled full width image.
+ */
+.group-container .image-container {
+  width: 100%;
+}
+
+/**
+ * Acutally show the image of the icon with the correct height. Use margins
+ * to center it in the card.
+ */
+.group-container .image-container img {
+  width: 60%;
+  height: auto;
+  margin: 0 auto;
+  padding: 0;
+}

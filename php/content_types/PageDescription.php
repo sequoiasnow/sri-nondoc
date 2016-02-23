@@ -22,7 +22,7 @@ class PageDescription extends ContentType {
                     'title'       => 'Page Name',
                     'description' => 'The name of the page section. The available
                                       options are: title, about, product-groups
-                                      network, outreach, staff, contact',
+                                      network, work-with, staff, contact',
                 ),
                 'validation' => function ( $val ) {
                     return in_array( $val, array(
@@ -30,7 +30,7 @@ class PageDescription extends ContentType {
                         'about',
                         'product-groups',
                         'network',
-                        'outreach',
+                        'work-with',
                         'staff',
                         'contact',
                     ) );

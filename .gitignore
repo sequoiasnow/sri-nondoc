@@ -2,3 +2,4 @@ node_modules
 .sass-cache
 config.php
 dist
+.DS_Store

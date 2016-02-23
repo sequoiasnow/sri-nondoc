@@ -3,11 +3,8 @@ CREATE TABLE product_group (
     id INT(11) NOT NULL AUTO_INCREMENT,
     title VARCHAR(50) NOT NULL,
     blurb VARCHAR(200) NOT NULL,
-<<<<<<< HEAD
-    description TEXT NOT NULL,
-=======
     icon VARCHAR(50),
     description VARCHAR(1500) NOT NULL,
->>>>>>> 1527268fc33a5e7c842383b99144aeb96bb18427
+    doclink VARCHAR(255),
     PRIMARY KEY( id )
 );
