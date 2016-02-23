@@ -28,6 +28,10 @@
                         <p class="description">
                             <?php print __( $person->description ); ?>
                         </p>
+
+                        <?php if ( isset( $person->link ) && $person->link ) : ?>
+                            <a class="doc-link" href="<?php print $person->link; ?>">More Info</a>
+                        <?php endif; ?>
                     </div>
 
                 </div>

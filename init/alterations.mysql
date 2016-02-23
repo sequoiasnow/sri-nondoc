@@ -1,1 +1,1 @@
-ALTER TABLE product_group ADD doclink VARCHAR(255);
+ALTER TABLE about_persons ADD link VARCHAR(300);

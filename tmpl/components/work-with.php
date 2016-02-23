@@ -33,9 +33,9 @@
                     </div> <!-- .front -->
 
                     <div class="back">
-                        <div class="description">
-                            <p><?php print __($group->blurb); ?></p>
-                        </div>
+                        <p class="description">
+                            <?php print __($group->blurb); ?>
+                        </p>
 
                         <a class="doc-link" href="<?php print $group->link; ?>"><?php print __('Go!'); ?></a>
                     </div> <!-- .back -->

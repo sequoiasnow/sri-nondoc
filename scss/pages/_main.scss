@@ -190,6 +190,13 @@
 }
 
 /**
+ * Make go link display properly.
+ */
+#work-with .doc-link {
+  display: inline-block;
+}
+
+/**
  * Creates the content container for the form.
  */
 #contact {

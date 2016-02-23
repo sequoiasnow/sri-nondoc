@@ -4,5 +4,6 @@ CREATE TABLE about_persons (
     name VARCHAR(100),
     imagePath VARCHAR(255),
     description VARCHAR(1500),
+    link VARCHAR(300),
     PRIMARY KEY(id)
 );

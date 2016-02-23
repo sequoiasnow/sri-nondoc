@@ -8,6 +8,9 @@ mysql:
 newtables:
 	php init/newtables.php
 
+alterations:
+	php init/alter.php
+
 install:
 	sudo npm install
 

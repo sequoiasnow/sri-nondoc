@@ -40,6 +40,15 @@ class AboutPerson extends ContentType {
                                       their job',
                 ),
             ) ),
+            new TextField( array(
+                'name'     => 'link',
+                'required' => false,
+                'public'   => array(
+                    'title' => 'Link',
+                    'description' => 'A link to more information concerning this
+                                      person.'
+                ),
+            ) ),
         );
     }
 
@@ -53,7 +62,8 @@ class AboutPerson extends ContentType {
         return array(
             'name'        => 'name',
             'photo'       => 'imagePath',
-            'description' => 'description'
+            'description' => 'description',
+            'link'        => 'link'
         );
     }
 
@@ -81,6 +91,7 @@ class AboutPerson extends ContentType {
     public $name;
     public $imagePath;
     public $description;
+    public $link;
 
     /**
      * The name of an instance of the NavigationLink class.
