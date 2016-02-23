@@ -10,6 +10,10 @@ function contactUs( $data ) {
     // Get the info as specified in the contact info section of the site
     // management porition
     $info = ContactInfo::getInstance();
+
+    // For development purposes, currently return;
+
+    // Send an email to the contacted persons
 }
 
 /**
