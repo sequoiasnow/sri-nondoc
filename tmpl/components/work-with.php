@@ -42,6 +42,8 @@
 
                 </div> <!-- .card-content -->
 
+            </article> <!-- .card -->
+
         <?php endforeach; ?>
 
     </section> <!-- .group-container -->
