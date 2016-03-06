@@ -13,11 +13,11 @@
   background-color: rgb(4, 4, 4);
   color: $light-text-color;
   position: fixed;
+  top: 0;
   left: 0;
   right: 0;
-  top: 0;
   bottom: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   z-index: -1;
 }
@@ -49,8 +49,8 @@
  * Give an overlay from the title to allow for scrolling past the fixed
  * positioned marker.
  */
-#title-overlay {
-  height: 150vh;
+#title-section-container {
+  height: 100vh;
   background-color: transparent;
 }
 
@@ -223,7 +223,6 @@
  * Allow for card flip and for centering inline block cards.
  */
 #staff .content-extra-large {
-  @include transform(translateZ(1px));
   text-align: center;
 }
 

@@ -10,20 +10,24 @@ loadComponetTempalte( 'header' ); ?>
 
     <?php loadComponetTempalte( 'navigation' ); ?>
 
-    <?php loadComponetTempalte( 'title-overlay' ); ?>
+    <div id="page">
 
-    <?php loadComponetTempalte( 'about' ); ?>
+        <?php loadComponetTempalte( 'title-overlay' ); ?>
 
-    <?php loadComponetTempalte( 'product-groups' ); ?>
+        <?php loadComponetTempalte( 'about' ); ?>
 
-    <?php loadComponetTempalte( 'network' ); ?>
+        <?php loadComponetTempalte( 'product-groups' ); ?>
 
-    <?php loadComponetTempalte( 'work-with' ); ?>
+        <?php loadComponetTempalte( 'network' ); ?>
 
-    <?php loadComponetTempalte( 'staff' ); ?>
+        <?php loadComponetTempalte( 'work-with' ); ?>
 
-    <?php loadComponetTempalte( 'locations' ); ?>
+        <?php loadComponetTempalte( 'staff' ); ?>
 
-    <?php // loadComponetTempalte( 'contact' ); ?>
+        <?php loadComponetTempalte( 'locations' ); ?>
+
+        <?php // loadComponetTempalte( 'contact' ); ?>
+
+    </div>
 
 <?php loadComponetTempalte( 'footer' ); ?>

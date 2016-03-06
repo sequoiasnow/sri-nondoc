@@ -1,19 +1,21 @@
-<div id="title-section" class="page-section">
+<div id="title-section-container" class="page-section">
 
-    <?php $titleInfo = PageDescription::getFromName( 'title' ); ?>
+    <div id="title-section">
 
-    <section class="content">
+        <?php $titleInfo = PageDescription::getFromName( 'title' ); ?>
 
-        <h1><?php print __( $titleInfo->title ); ?></h1>
+        <section class="content">
 
-        <p class="slogan"><?php print $titleInfo->alternate; ?></p>
+            <h1><?php print __( $titleInfo->title ); ?></h1>
 
-        <p class="description">
-            <?php echo __( $titleInfo->description ); ?>
-        </p>
+            <p class="slogan"><?php print $titleInfo->alternate; ?></p>
 
-    </section>
+            <p class="description">
+                <?php echo __( $titleInfo->description ); ?>
+            </p>
 
-</div> <!-- #title-section -->
+        </section>
 
-<div id="title-overlay" class="page-section"></div>
+    </div> <!-- #title-section -->
+
+</div> <!-- #title-section-container -->
