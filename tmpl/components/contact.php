@@ -1,37 +1,42 @@
-<?php
-// Information for contacts.
-$contactForm = new Form( array(
-    'action' => new Action( 'contactUs' ),
-    'fields' => array(
-        new TextField( array(
-            'name'        => 'name',
-            'placeholder' => 'John Doe',
-        ) ),
-        new TextField( array(
-            'name'        => 'email',
-            'placeholder' => 'example@email.com',
-        ) ),
-        new TextAreaField( array(
-            'name'        => 'message',
-            'placeholder' => 'Your message here.',
-        ) ),
-        new SubmitField( array(
-            'name'  => 'submit',
-            'value' => 'Send',
-        ) ),
-    )
-), false);
-?>
 
 <div id="contact" class="page-section">
 
-    <?php $contactInfo = PageDescription::getFromName( 'contact' ); ?>
+    <?php
+    $pageDescription = PageDescription::getFromName( 'contact' );
+    $contactInfo     = ContactInfo::getInstance();
+    ?>
 
     <section class="content">
 
-        <h1><?php print $contactInfo->title; ?></h1>
+        <h1><?php print __( $pageDescription->title ); ?></h1>
 
-        <?php echo $contactForm; ?>
+        <ul>
+
+            <li>
+                <div class="icon">
+                    <i class="fa fa-phone"></i>
+                </div>
+
+                <span><?php print __($contactInfo->phone); ?></span>
+            </li>
+
+            <li>
+                <div class="icon">
+                    <i class="fa fa-envelope-o"></i>
+                </div>
+
+                <span><?php print __($contactInfo->email); ?></span>
+            </li>
+
+            <li>
+                <div class="icon">
+                    <i class="fa fa-map-marker"></i>
+                </div>
+
+                <span><?php print __($contactInfo->location); ?></span>
+            </li>
+
+        </ul>
 
     </section>
 

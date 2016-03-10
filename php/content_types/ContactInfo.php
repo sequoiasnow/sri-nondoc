@@ -12,29 +12,26 @@ class ContactInfo extends ContentType {
     public static function getFields() {
         return array(
             new TextField( array(
-                'name'   => 'to_email',
+                'name'   => 'email',
                 'public' => array(
-                    'title'       => 'To Email',
-                    'description' => 'Email that should be notfied when a
-                                      comemnt is posted.',
+                    'title'       => 'Email',
+                    'description' => 'Email that should be used to access the
+                                      site with questions, such, etc...',
                 ),
             ) ),
             new TextField( array(
-                'name'   => 'from_email',
+                'name'   => 'phone',
                 'public' => array(
-                    'title' => 'From Email',
-                    'description' => 'The email which should show as having sent
-                                      the message for the comemnt. (Note this
-                                      field may not be the actual email used
-                                      to send the message).',
+                    'title' => 'Phone',
+                    'description' => 'A phone number to be reached at.',
                 ),
             ) ),
             new TextField( array(
-                'name'   => 'from_subject',
+                'name'   => 'location',
                 'public' => array(
-                    'title'       => 'From Subject',
-                    'description' => 'The subject line you will recieve when a
-                                       new comment is posted from the site.',
+                    'title'       => 'Location',
+                    'description' => 'Where to recieve physical messages, and
+                                      people alike.',
                 ),
             ) ),
         );
@@ -48,9 +45,9 @@ class ContactInfo extends ContentType {
      */
     public static function getFormFieldMap() {
         return array(
-            'to_email'     => 'toEmail',
-            'from_email'   => 'fromEmail',
-            'from_subject' => 'subject',
+            'email'    => 'email',
+            'location' => 'location',
+            'phone'    => 'phone',
         );
     }
 

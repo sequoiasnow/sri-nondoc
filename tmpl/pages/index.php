@@ -26,7 +26,7 @@ loadComponetTempalte( 'header' ); ?>
 
         <?php loadComponetTempalte( 'locations' ); ?>
 
-        <?php // loadComponetTempalte( 'contact' ); ?>
+        <?php loadComponetTempalte( 'contact' ); ?>
 
     </div>
 

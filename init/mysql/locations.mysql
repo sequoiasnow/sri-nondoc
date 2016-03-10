@@ -6,5 +6,6 @@ CREATE TABLE locations (
     link VARCHAR(200),
     longitude DOUBLE NOT NULL,
     latitude DOUBLE NOT NULL,
+    location VARCHAR(255),
     PRIMARY KEY(id)
 );

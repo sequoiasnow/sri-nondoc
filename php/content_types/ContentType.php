@@ -127,7 +127,9 @@ include 'WorkWith.php';
 include 'PageDescription.php';
 include 'PageInformation.php';
 include 'ProductGroup.php';
-include 'Image.php';
 include 'ContactInfo.php';
 include 'AboutLink.php';
 include 'Locations.php';
+
+// Simple functionality, no logner a subclass of ContentType
+include 'Image.php';

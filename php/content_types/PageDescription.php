@@ -33,6 +33,7 @@ class PageDescription extends ContentType {
                         'work-with',
                         'staff',
                         'contact',
+                        'locations',
                     ) );
                 },
             ) ),

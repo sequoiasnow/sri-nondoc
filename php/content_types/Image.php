@@ -5,7 +5,7 @@
  *
  * @see init/mysql/NavigationLink.mysql
  */
-class Image extends ContentType {
+class Image /* extends ContentType */ {
     /// The table name specified for this content type
     const TableName = 'images';
 

@@ -41,6 +41,13 @@ class Locations extends ContentType {
                 ),
             ) ),
             new TextField( array(
+                'name' => 'location',
+                'public' => array(
+                    'title'       => 'Location',
+                    'description' => 'The location of the site, could be a country or a provence etc'
+                ),
+            ) ),
+            new TextField( array(
                 'name'   => 'longitude',
                 'public' => array(
                     'title'       => 'Lognitude',
@@ -72,6 +79,7 @@ class Locations extends ContentType {
             'link'      => 'link',
             'latitude'  => 'latitude',
             'longitude' => 'longitude',
+            'location'  => 'location',
         );
     }
 

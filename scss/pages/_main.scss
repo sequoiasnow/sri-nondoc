@@ -258,8 +258,21 @@
  * Change the locations to display a google map properly.
  */
 #locations {
-  min-height: 500px;
   position: relative;
+  background-color: $dark-bgcolor;
+  color: $light-text-color;
+}
+
+#locations .card .front {
+  @extend %center-vertical;
+}
+
+#locations .front > div {
+  margin: 20px auto;
+}
+
+#locations .name span {
+  @include font-size(20px);
 }
 
 /**
@@ -271,4 +284,65 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+
+/**
+ * Create the list of contact us buttons as seen in the contact us section.
+ */
+#contact {
+  background-color: color('white');
+  color: $text-color;
+}
+
+#contact ul {
+  @include display-flex;
+  @include flex-flow(row-wrap);
+  @include justify-content(center);
+  list-style-type: none;
+  width: 100%;
+  padding: 0;
+  margin: 20px auto;
+
+  @include respond-to('medium') {
+    @include flex-direction(column);
+    @include justify-content(flex-start);
+  }
+}
+
+#contact li {
+  margin: 20px;
+  text-align: center;
+  padding: 20px;
+
+  @include respond-to('medium') {
+    margin: 20px auto;
+  }
+}
+
+#contact li .icon {
+  @extend %center-vertical;
+  @include transition(all 0.6s);
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 1px solid rgb(0, 0, 0);
+  margin: 20px auto;
+
+  &:hover {
+    background-color: rgb(0, 0, 0);
+    color: $light-text-color
+  }
+}
+
+#contact li .fa {
+  @include transition(all 0.6s);
+  @include font-size(90px);
+  margin: auto;
+  display: block;
+}
+
+#contact li span {
+
+  width: 100%;
+  text-align: center;
 }

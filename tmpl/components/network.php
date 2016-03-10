@@ -24,7 +24,11 @@ $networkChartData = NetworkData::getInstance();
 
             <p><?php print __($networkInfo->description); ?></p>
 
-            <a class="doc-link" href="">Documentation</a>
+            <?php if ( isset($networkInfo->alternate) && $networkInfo->alternate ) : ?>
+
+                <a class="doc-link" href="<?php print $networkInfo->alternate; ?>">Documentation</a>
+
+            <?php endif; ?>
 
         <seciton> <!-- .network-info -->
 
